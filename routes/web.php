@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\ResourcesController;
+use App\Http\Controllers\SupportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('home');
 });
-
+Route::get('/login', function () {
+    return view('auth.login');
+});
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('projects', ProjectsController::class);
+    Route::resource('resources', ResourcesController::class);
+    Route::resource('support', SupportController::class);
+});

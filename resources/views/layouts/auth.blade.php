@@ -16,28 +16,19 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="">
-	<meta name="author" content="Phoenixcoded" />
+	<meta name="author" content="Ronald Windwaai" />
 	<!-- Favicon icon -->
-	<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
-
+	<link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon">
 	<!-- vendor css -->
-	<link rel="stylesheet" href="assets/css/style.css">
-
-
-
-
+	<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
 @yield('content')
 
 <!-- Required Js -->
-<script src="assets/js/vendor-all.min.js"></script>
-<script src="assets/js/plugins/bootstrap.min.js"></script>
-<script src="assets/js/ripple.js"></script>
-<script src="assets/js/pcoded.min.js"></script>
-
-
-
+<script src="{{ asset('assets/js/vendor-all.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/ripple.js') }}"></script>
+<script src="{{ asset('assets/js/pcoded.min.js') }}"></script>
 </body>
-
 </html>
