@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Resource;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 class ResourceFactory extends Factory
 {
@@ -24,6 +25,7 @@ class ResourceFactory extends Factory
         return [
             'title' => $this->faker->unique()->name,
             'description' => $this->faker->realText(),
+            'user_id'   =>  User::all()->random()->id,
         ];
     }
 }

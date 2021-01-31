@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Support;
-use Exception;
+use App\Models\Recording;
 use Illuminate\Http\Request;
 
-class SupportController extends Controller
+class RecordingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,23 +35,16 @@ class SupportController extends Controller
      */
     public function store(Request $request)
     {
-        try{
-            $support = Support::create($request);
-            return \redirect()->back()->withSuccess('Successfully saved!!');
-
-        }catch(Exception $exception){
-            return \redirect()->back()->withErrors($exception->getMessage());
-
-        }
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Support  $support
+     * @param  \App\Models\Recording  $recording
      * @return \Illuminate\Http\Response
      */
-    public function show(Support $support)
+    public function show(Recording $recording)
     {
         //
     }
@@ -60,10 +52,10 @@ class SupportController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Support  $support
+     * @param  \App\Models\Recording  $recording
      * @return \Illuminate\Http\Response
      */
-    public function edit(Support $support)
+    public function edit(Recording $recording)
     {
         //
     }
@@ -72,10 +64,10 @@ class SupportController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Support  $support
+     * @param  \App\Models\Recording  $recording
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Support $support)
+    public function update(Request $request, Recording $recording)
     {
         //
     }
@@ -83,10 +75,10 @@ class SupportController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Support  $support
+     * @param  \App\Models\Recording  $recording
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Support $support)
+    public function destroy(Recording $recording)
     {
         //
     }

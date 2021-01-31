@@ -13,11 +13,17 @@ class Resource extends Model
     protected $fillable = [
         'title',
         'description',
+        'user_id',
     ];
 
     public function get_table_columns()
     {
         return DB::getSchemaBuilder()->getColumnListing($this->getTable());
+    }
+
+    public function users()
+    {
+        return $this->belongTo(User::class);
     }
 
     public function projects()

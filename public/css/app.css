@@ -9971,3 +9971,8 @@ h3 {
     border-color: #dee2e6;
   }
 }
+
+#styleSelector{
+    display: none !important;
+    visibility: hidden;
+}

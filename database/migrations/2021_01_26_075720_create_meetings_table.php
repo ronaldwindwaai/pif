@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ResourceTable extends Migration
+class CreateMeetingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,17 @@ class ResourceTable extends Migration
      */
     public function up()
     {
-        Schema::create('resources', function (Blueprint $table) {
+        Schema::create('meetings', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique();
-            $table->text('description')->nullable();
+            $table->string('title');
+            $table->dateTime('starting_date');
+            $table->dateTime('end_date')->nullable();
+            $table->text('description');
+            $table->longText('file')->nullable();
             $table->foreignId('user_id')
             ->constrained('users');
+            $table->foreignId('project_id')
+            ->constrained('projects');
             $table->timestamps();
         });
     }
@@ -30,6 +35,6 @@ class ResourceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resources');
+        Schema::dropIfExists('meetings');
     }
 }

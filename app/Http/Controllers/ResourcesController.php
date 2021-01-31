@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreResourceRequest;
 use App\Models\Resource;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 class ResourcesController extends Controller
 {
@@ -30,7 +33,7 @@ class ResourcesController extends Controller
             return $value === 'title' || $value === 'project_title'
             || $value === 'activity_name' || $value === 'date_from' || $value === 'date_to' || $value === 'venue';
         });
-        return view('pages.project.index')
+        return view('pages.resource.index')
         ->with('data', $resources)
             ->with('columns', $only_columns)
             ->with('title', $title);
@@ -43,7 +46,10 @@ class ResourcesController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'Add a Resource';
+
+        return view('pages.resource.add')
+            ->with('title', $title);
     }
 
     /**
@@ -52,9 +58,25 @@ class ResourcesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreResourceRequest $request)
     {
-        //
+        try {
+
+            $validated = $request->validated();
+
+            $resource = new Resource($validated);
+            $resource->user_id = Auth::user()->id;
+            $resource->save();
+
+            //$request->session()->flash('success', 'Resource was successfully created..');
+
+            return \redirect()
+                ->route('resources.index')->withStatus('Resource was successfully created..');
+        } catch (Exception $exception) {
+            return \redirect()
+                    ->back()
+                    ->withErrors($exception->getMessage());
+        }
     }
 
     /**
@@ -99,6 +121,14 @@ class ResourcesController extends Controller
      */
     public function destroy(Resource $resource)
     {
-        //
+        try {
+            dd($resource);
+            return \redirect()
+                ->route('resources.index')->withStatus('Resource was successfully deleted..');
+        } catch (Exception $exception) {
+            return \redirect()
+                ->back()
+                ->withErrors($exception->getMessage());
+        }
     }
 }

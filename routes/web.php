@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\RecordingController;
 use App\Http\Controllers\ResourcesController;
 use App\Http\Controllers\SupportController;
 use Illuminate\Support\Facades\Route;
@@ -28,4 +30,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('projects', ProjectsController::class);
     Route::resource('resources', ResourcesController::class);
     Route::resource('support', SupportController::class);
+    Route::resource('meeting', MeetingController::class);
+    Route::resource('recording', RecordingController::class);
 });

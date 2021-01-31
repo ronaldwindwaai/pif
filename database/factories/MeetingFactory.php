@@ -2,19 +2,19 @@
 
 namespace Database\Factories;
 
-use App\Models\Project;
+use App\Models\Meeting;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\User;
+use App\Models\Project;
 
-class ProjectFactory extends Factory
+class MeetingFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Project::class;
+    protected $model = Meeting::class;
 
     /**
      * Define the model's default state.
@@ -25,16 +25,15 @@ class ProjectFactory extends Factory
     {
         $startingDate = $this->faker->dateTimeThisYear('+1 month');
         $endingDate   = $this->faker->dateTimeThisYear('+2 month');
+
         return [
-            'programme_title' => $this->faker->title,
-            'project_title' => $this->faker->name,
-            'activity_name' => $this->faker->name,
-            'date_from' => $startingDate,
-            'date_to' => $endingDate,
-            'venue' => $this->faker->city.','. $this->faker->country,
-            'objective' =>  $this->faker->realText(),
-            'file' => $this->faker->name.'.xsl',
+            'title' => $this->faker->title,
+            'starting_date' => $startingDate,
+            'end_date' => $endingDate,
+            'description' =>  $this->faker->realText(),
+            'file' => $this->faker->name . '.xsl',
             'user_id'   =>  User::all()->random()->id,
+            'project_id'   =>  Project::all()->random()->id,
         ];
     }
 }

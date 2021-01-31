@@ -26,6 +26,35 @@
 <!-- form-select-custom Js -->
 <script src="{{ asset('assets/js/pages/form-select-custom.js')}}"></script>
 
+<script type="text/javascript">
+
+$(document).ready(function(){
+   $( "#modal-delete-button" ).click(function() {
+        var input = $('.checkboxes');
+        var ids = [];
+        for (var i = 0; i < input.length; i++) {
+            if (input[i].type === 'checkbox' && input[i].checked === true) {
+                ids.push(input[i].value);
+            }
+        }
+
+        console.log(ids);
+    });
+
+
+})
+  function selectAll() {
+        var input = document.getElementsByTagName('input');
+        for (var i = 0; i < input.length; i++) {
+            if (input[i].type === 'checkbox' && input[i].checked === false) {
+                input[i].checked = true;
+            }else{
+                input[i].checked = false;
+            }
+        }
+    }
+</script>
+
 @if (!empty($success))
 <script>
     $(window).on('load', function() {
@@ -52,7 +81,7 @@
                 }
             });
         };
-    notify({{ $request->session()->all() }});
+    notify('Test line');
     });
 </script>
 
@@ -64,5 +93,7 @@
     'title' =>  $title,
     'data'  =>  $data,
     'columns'  =>  $columns,
+    'form' => 'project',
+    'page' => 'projects',
 ])
 @endsection

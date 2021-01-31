@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-     <!-- CSRF Token -->
+    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
@@ -30,21 +30,18 @@
 
 
 </head>
-<body class="">
-	@include('shared.loader')
-	@include('shared.navigation')
-	@include('shared.header')
-<!-- [ Main Content ] start -->
-<div class="pcoded-main-container">
-    <div class="pcoded-content">
-        @include('shared.breadcrumb')
-        @yield('content')
-    </div>
-</div>
-<!-- Button trigger modal -->
 
-@include('includes.start_modal')
-<!-- [ Main Content ] end -->
+<body class="">
+    @include('shared.navigation')
+    @include('shared.header')
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-content">
+            @include('shared.breadcrumb')
+            @yield('content')
+        </div>
+    </div>
+
     <!-- Warning Section start -->
     <!-- Older IE warning message -->
     <!--[if lt IE 11]>
@@ -93,12 +90,13 @@
     <!-- Warning Section Ends -->
 
     <!-- Required Js -->
-    <script src="{{ asset('assets/js/vendor-all.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor-all.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/ripple.js') }}"></script>
     <script src="{{ asset('assets/js/pcoded.min.js') }}"></script>
-	<script src="{{ asset('assets/js/menu-setting.min.js') }}"></script>
+    <script src="{{ asset('assets/js/menu-setting.min.js') }}"></script>
 
-@yield('js')
+    @yield('js')
 </body>
+
 </html>

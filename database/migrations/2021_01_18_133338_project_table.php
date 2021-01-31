@@ -23,6 +23,8 @@ class ProjectTable extends Migration
             $table->string('venue');
             $table->text('objective');
             $table->longText('file')->nullable();
+            $table->foreignId('user_id')
+            ->constrained('users');
             $table->timestamps();
         });
     }

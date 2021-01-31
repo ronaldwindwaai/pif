@@ -51,12 +51,6 @@
 							<li><a href="user-list.html">List All Users</a></li>
 						</ul>
 					</li>
-
-
-
-
-
-
 				</ul>
 
 				<div class="card text-center">
@@ -65,7 +59,7 @@
 						<i class="feather icon-sunset f-40"></i>
 						<h6 class="mt-3">Help?</h6>
 						<p>Please contact us on our email for need any support</p>
-						<a href="#!" target="_blank" class="btn btn-primary btn-sm text-white m-0">Support</a>
+						<a href="{{ route('support.create') }}" target="_blank" class="btn btn-primary btn-sm text-white m-0">Support</a>
 					</div>
 				</div>
 

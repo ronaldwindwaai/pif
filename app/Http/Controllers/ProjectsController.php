@@ -8,6 +8,8 @@ use App\Models\Resource;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Symfony\Component\Console\Input\Input;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectsController extends Controller
 {
@@ -27,16 +29,10 @@ class ProjectsController extends Controller
 
         $title = 'List of Projects';
         $projects = Project::all();
-        $columns = $this->project->get_table_columns();
-
-        $only_columns = Arr::where($columns, function ($value, $key){
-
-            return $value === 'programme_title' || $value === 'project_title'
-            || $value === 'activity_name' || $value === 'date_from' || $value === 'date_to' || $value === 'venue';
-        });
+        $columns = $this->project->columns;
         return view('pages.project.index')
                         ->with('data',$projects)
-                        ->with('columns', $only_columns)
+                        ->with('columns', $columns)
                         ->with('title',$title);
     }
 
@@ -50,17 +46,11 @@ class ProjectsController extends Controller
         $title = 'Add a Project';
         $projects = Project::all();
         $resources = Resource::all();
-        $columns = $this->project->get_table_columns();
 
-        $only_columns = Arr::where($columns, function ($value, $key) {
 
-            return $value === 'programme_title' || $value === 'project_title'
-            || $value === 'activity_name' || $value === 'date_from' || $value === 'date_to' || $value === 'venue';
-        });
         return view('pages.project.add')
             ->with('projects', $projects)
             ->with('resources', $resources)
-            ->with('columns', $only_columns)
             ->with('title', $title);
     }
 
@@ -74,7 +64,7 @@ class ProjectsController extends Controller
     {
         try{
             $validated = $request->validated();
-            $project = Project::create($validated);
+            $project = Auth::user()->projects()->create($validated);
             $resource = Resource::find($validated);
             $file = $request->file('file')->storeAs('uploads', $request->file('file')->getClientOriginalName());
 
@@ -138,8 +128,11 @@ class ProjectsController extends Controller
     public function destroy(Project $project, Request $request)
     {
         try {
+
+            $projects = $project::whereIn('id',$request->id)->delete();
+            dd($projects);
             $project->resources()->detach($project);
-            $project->delete();
+            dd($project->whereIn('id',$request)->delete());
 
             return \redirect()
                 ->route('projects.index')
