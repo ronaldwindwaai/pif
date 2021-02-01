@@ -18,6 +18,18 @@ class Meeting extends Model
         'file',
     ];
 
+    private $columns = [
+        'title',
+        'starting_date',
+        'end_date',
+        'venue',
+    ];
+
+    public function get_columns()
+    {
+        return $this->columns;
+    }
+
     public function programme()
     {
         return $this->belongsTo(Programme::class);

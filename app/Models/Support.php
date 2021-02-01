@@ -15,6 +15,18 @@ class Support extends Model
         'user_id',
     ];
 
+    private $columns = [
+        'id',
+        'title',
+        'user',
+        'created_date',
+    ];
+
+    public function get_columns()
+    {
+        return $this->columns;
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

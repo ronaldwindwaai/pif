@@ -7,9 +7,8 @@ use App\Models\Project;
 use App\Models\Resource;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Symfony\Component\Console\Input\Input;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProjectsController extends Controller
 {
@@ -28,8 +27,11 @@ class ProjectsController extends Controller
     {
 
         $title = 'List of Projects';
-        $projects = Project::all();
-        $columns = $this->project->columns;
+
+        $projects = DB::table('projects')
+            ->select('name', 'email as user_email')
+            ->get();
+
         return view('pages.project.index')
                         ->with('data',$projects)
                         ->with('columns', $columns)

@@ -14,6 +14,18 @@ class Programme extends Model
         'description',
     ];
 
+    private $columns = [
+        'id',
+        'title',
+        'created_date',
+    ];
+
+    public function get_columns()
+    {
+        return $this->columns;
+    }
+
+
     public function meetings()
     {
         return $this->hasMany(Meeting::class);

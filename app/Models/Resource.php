@@ -16,9 +16,15 @@ class Resource extends Model
         'user_id',
     ];
 
-    public function get_table_columns()
+    private $columns = [
+        'id',
+        'title',
+        'created_date',
+    ];
+
+    public function get_columns()
     {
-        return DB::getSchemaBuilder()->getColumnListing($this->getTable());
+        return $this->columns;
     }
 
     public function users()

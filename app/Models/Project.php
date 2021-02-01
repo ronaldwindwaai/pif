@@ -19,6 +19,18 @@ class Project extends Model
         'file',
     ];
 
+    private $columns = [
+        'title',
+        'date_from',
+        'date_to',
+        'created_date',
+    ];
+
+    public function get_columns()
+    {
+        return $this->columns;
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

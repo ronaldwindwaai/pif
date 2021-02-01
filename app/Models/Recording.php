@@ -14,4 +14,15 @@ class Recording extends Model
         'credentials',
         'url_recording',
     ];
+
+    private $columns = [
+        'id',
+        'title',
+        'url_recording',
+    ];
+
+    public function get_columns()
+    {
+        return $this->columns;
+    }
 }

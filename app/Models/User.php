@@ -41,6 +41,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    private $columns = [
+        'id',
+        'name',
+        'email',
+        'created_date',
+    ];
+
+    public function get_columns()
+    {
+        return $this->columns;
+    }
+
 
     public function projects()
     {
