@@ -31,7 +31,6 @@ class ProjectFactory extends Factory
             'activity_name' => $this->faker->name,
             'date_from' => $startingDate,
             'date_to' => $endingDate,
-            'venue' => $this->faker->city.','. $this->faker->country,
             'objective' =>  $this->faker->realText(),
             'file' => $this->faker->name.'.xsl',
             'user_id'   =>  User::all()->random()->id,

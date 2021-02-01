@@ -16,8 +16,11 @@ class CreateRecordingsTable extends Migration
         Schema::create('recordings', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date')->nullable();
             $table->text('url_recording')->nullable();
             $table->longText('credentials')->nullable();
+            $table->longText('file')->nullable();
             $table->foreignId('user_id')
             ->constrained('users');
             $table->foreignId('meeting_id')

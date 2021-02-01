@@ -15,16 +15,15 @@ class ProjectTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('programme_title');
-            $table->string('project_title');
-            $table->string('activity_name');
+            $table->string('title');
             $table->dateTime('date_from');
             $table->dateTime('date_to');
-            $table->string('venue');
             $table->text('objective');
             $table->longText('file')->nullable();
             $table->foreignId('user_id')
-            ->constrained('users');
+                    ->constrained('users');
+            $table->foreignId('prgramme_id')
+                ->constrained('programme');
             $table->timestamps();
         });
     }

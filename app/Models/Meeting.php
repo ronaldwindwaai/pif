@@ -9,6 +9,20 @@ class Meeting extends Model
 {
     use HasFactory;
 
+    protected $fillable =   [
+        'title',
+        'starting_date',
+        'end_date',
+        'venue',
+        'description',
+        'file',
+    ];
+
+    public function programme()
+    {
+        return $this->belongsTo(Programme::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -22,5 +36,10 @@ class Meeting extends Model
     public function recordings()
     {
         return $this->hasMany(Recording::class);
+    }
+
+    public function resources()
+    {
+        return $this->belongsToMany(Resource::class);
     }
 }

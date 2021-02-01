@@ -26,12 +26,14 @@ class DatabaseSeeder extends Seeder
                 'remember_token' => Str::random(10),
             ]
         );
+        \App\Models\Programme::factory(5)->create();
+        \App\Models\Project::factory(15)->create();
         \App\Models\Resource::factory(10)->create();
-        \App\Models\Project::factory(35)
+        \App\Models\Meeting::factory(35)
             ->create()
-            ->each(function ($project) {
+            ->each(function ($meeting) {
                 $random_resource = Resource::all()->random()->pluck('id');
-                $project->resources()->attach($random_resource);
+                $meeting->resources()->attach($random_resource);
             });
             \App\Models\Support::factory(15)->create();
 

@@ -26,8 +26,8 @@ class Resource extends Model
         return $this->belongTo(User::class);
     }
 
-    public function projects()
+    public function meetings()
     {
-        return $this->belongsToMany(Project::class);
+        return $this->belongsToMany(Meeting::class);
     }
 }

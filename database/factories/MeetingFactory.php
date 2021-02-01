@@ -6,6 +6,7 @@ use App\Models\Meeting;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
 use App\Models\Project;
+use App\Models\Programme;
 
 class MeetingFactory extends Factory
 {
@@ -31,9 +32,11 @@ class MeetingFactory extends Factory
             'starting_date' => $startingDate,
             'end_date' => $endingDate,
             'description' =>  $this->faker->realText(),
+            'venue' => $this->faker->city . ',' . $this->faker->country,
             'file' => $this->faker->name . '.xsl',
             'user_id'   =>  User::all()->random()->id,
             'project_id'   =>  Project::all()->random()->id,
+            'programme_id'   =>  Programme::all()->random()->id,
         ];
     }
 }

@@ -20,10 +20,14 @@ class CreateMeetingsTable extends Migration
             $table->dateTime('end_date')->nullable();
             $table->text('description');
             $table->longText('file')->nullable();
+            $table->string('venue')->nullable();
             $table->foreignId('user_id')
             ->constrained('users');
             $table->foreignId('project_id')
-            ->constrained('projects');
+                ->constrained('projects');
+            $table->foreignId('programme_id')
+                ->constrained('programme');
+
             $table->timestamps();
         });
     }

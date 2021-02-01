@@ -13,9 +13,9 @@ class ProjectResourceTable extends Migration
      */
     public function up()
     {
-        Schema::create('project_resource', function (Blueprint $table) {
-            $table->foreignId('project_id')
-                ->constrained('projects')
+        Schema::create('meeting_resource', function (Blueprint $table) {
+            $table->foreignId('meeting_id')
+                ->constrained('meeting')
                 ->onDelete('cascade');
             $table->foreignId('resource_id')
                 ->constrained('resources')
@@ -31,6 +31,6 @@ class ProjectResourceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_resource');
+        Schema::dropIfExists('meeting_resource');
     }
 }

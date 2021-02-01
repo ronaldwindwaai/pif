@@ -5,13 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Recording extends Model
+class Programme extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'title',
-        'credentials',
-        'url_recording',
+        'description',
     ];
+
+    public function meetings()
+    {
+        return $this->hasMany(Meeting::class);
+    }
 }
