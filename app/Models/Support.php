@@ -12,6 +12,7 @@ class Support extends Model
     protected $fillable = [
         'title',
         'description',
+        'status',
         'user_id',
     ];
 
@@ -19,7 +20,7 @@ class Support extends Model
         'id',
         'title',
         'user',
-        'created_date',
+        'status',
     ];
 
     public function get_columns()

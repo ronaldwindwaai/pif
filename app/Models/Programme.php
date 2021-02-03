@@ -17,7 +17,7 @@ class Programme extends Model
     private $columns = [
         'id',
         'title',
-        'created_date',
+        'created_at',
     ];
 
     public function get_columns()

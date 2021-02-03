@@ -22,12 +22,17 @@ class CreateMeetingsTable extends Migration
             $table->longText('file')->nullable();
             $table->string('venue')->nullable();
             $table->foreignId('user_id')
-            ->constrained('users');
+                    ->constrained('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->foreignId('project_id')
-                ->constrained('projects');
+                    ->constrained('projects')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->foreignId('programme_id')
-                ->constrained('programme');
-
+                    ->constrained('programmes')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }

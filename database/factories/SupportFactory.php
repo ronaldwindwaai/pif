@@ -25,6 +25,7 @@ class SupportFactory extends Factory
         return [
             'title' =>  $this->faker->realText(100),
             'description' =>  $this->faker->realText(),
+            'status'    =>  $this->faker->randomElement(['pending', 'closed']),
             'user_id'   =>  User::all()->random()->id,
         ];
     }

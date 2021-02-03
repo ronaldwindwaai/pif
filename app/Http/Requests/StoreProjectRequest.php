@@ -24,9 +24,7 @@ class StoreProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'programme_title' => 'required',
-            'project_title' => 'required',
-            'activity_name' => 'required',
+            'title' => 'required',
             'date_from' => 'required',
             'date_to' => 'required',
             'venue' => 'required',

@@ -15,10 +15,12 @@ class ProjectResourceTable extends Migration
     {
         Schema::create('meeting_resource', function (Blueprint $table) {
             $table->foreignId('meeting_id')
-                ->constrained('meeting')
+                ->constrained('meetings')
+                ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreignId('resource_id')
                 ->constrained('resources')
+                ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->timestamps();
         });

@@ -29,8 +29,10 @@ class ProjectsController extends Controller
         $title = 'List of Projects';
 
         $projects = DB::table('projects')
-            ->select('name', 'email as user_email')
+            ->select('id','title', 'date_from', 'date_to', 'created_at')
             ->get();
+
+        $columns    =   $this->project->get_columns();
 
         return view('pages.project.index')
                         ->with('data',$projects)

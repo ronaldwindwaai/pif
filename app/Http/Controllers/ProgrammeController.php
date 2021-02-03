@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProgrammeRequest;
 use App\Models\Programme;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProgrammeController extends Controller
 {
+    private $programme;
+    private $page;
+
+    public function __construct()
+    {
+        $this->programme    = new Programme();
+        $this->page =   'programmes';
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +26,26 @@ class ProgrammeController extends Controller
      */
     public function index()
     {
-        //
+        try {
+
+            $title = 'List of Programmes';
+
+            $programmes = DB::table('programmes')
+            ->select('id', 'title', 'created_at')
+            ->get();
+
+            $columns    =   $this->programme->get_columns();
+
+            return view('pages.programme.index')
+            ->with('data', $programmes)
+            ->with('columns', $columns)
+            ->with('title', $title);
+
+        } catch (Exception $exception) {
+            return \redirect()
+                ->back()
+                ->withErrors($exception->getMessage());
+        }
     }
 
     /**
@@ -24,7 +55,20 @@ class ProgrammeController extends Controller
      */
     public function create()
     {
-        //
+        try {
+            $title = 'Add a Programme';
+            $programmes = Programme::all();
+
+            return view('pages.programme.add')
+                ->with('projects', $programmes)
+                ->with('page', $this->page)
+                ->with('title', $title);
+        }catch(Exception $exception)
+        {
+            return \redirect()
+                ->back()
+                ->withErrors($exception->getMessage());
+        }
     }
 
     /**
@@ -33,9 +77,24 @@ class ProgrammeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProgrammeRequest $request)
     {
-        //
+        try {
+
+            $validated = $request->validated();
+
+            $programme = new Programme($validated);
+            $programme->user_id = Auth::user()->id;
+            $programme->save();
+
+            return \redirect()
+                ->route('programmes.index')->withStatus('The  ('. strtoupper($programme->title).') Programme was successfully created..');
+        } catch (Exception $exception) {
+            return \redirect()
+                ->back()
+                ->withErrors($exception->getMessage());
+        }
+
     }
 
     /**
@@ -46,7 +105,21 @@ class ProgrammeController extends Controller
      */
     public function show(Programme $programme)
     {
-        //
+        try {
+
+            $title = $programme->title;
+
+            return view('pages.programme.show')
+                ->with('data', $programme)
+                ->with('page', $this->page)
+                ->with('title', $title);
+
+        } catch (Exception $exception) {
+            dd($exception);
+            return \redirect()
+                ->back()
+                ->withErrors($exception->getMessage());
+        }
     }
 
     /**
@@ -57,7 +130,20 @@ class ProgrammeController extends Controller
      */
     public function edit(Programme $programme)
     {
-        //
+        try {
+
+            $title = $programme->title;
+
+            return view('pages.programme.edit')
+            ->with('data', $programme)
+                ->with('page', $this->page)
+                ->with('title', $title);
+        } catch (Exception $exception) {
+            dd($exception);
+            return \redirect()
+                ->back()
+                ->withErrors($exception->getMessage());
+        }
     }
 
     /**
@@ -67,9 +153,21 @@ class ProgrammeController extends Controller
      * @param  \App\Models\Programme  $programme
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Programme $programme)
+    public function update(StoreProgrammeRequest $request, Programme $programme)
     {
-        //
+        try {
+
+            $validated = $request->validated();
+
+            $programme->update($validated);
+
+            return \redirect()
+                ->route('programmes.index')->withStatus('The  (' . strtoupper($programme->title) . ') Programme was successfully updated..');
+        } catch (Exception $exception) {
+            return \redirect()
+                ->back()
+                ->withErrors($exception->getMessage());
+        }
     }
 
     /**
@@ -80,6 +178,16 @@ class ProgrammeController extends Controller
      */
     public function destroy(Programme $programme)
     {
-        //
+        try {
+            $title = $programme->title;
+            $programme->delete();
+
+            return \redirect()
+                ->route('programmes.index')
+                ->withStatus('Successfully deleted the ('. strtoupper($title).') Programme');
+        } catch (Exception $exception) {
+            dd($exception);
+            return \redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 }

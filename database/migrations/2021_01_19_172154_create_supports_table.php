@@ -16,9 +16,12 @@ class CreateSupportsTable extends Migration
         Schema::create('supports', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->enum('status',['pending', 'closed'])->default('pending');
             $table->text('description');
             $table->foreignId('user_id')
-            ->constrained('users');
+                    ->constrained('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }

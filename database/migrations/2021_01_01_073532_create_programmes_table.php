@@ -17,6 +17,10 @@ class CreateProgrammesTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

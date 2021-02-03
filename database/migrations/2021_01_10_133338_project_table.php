@@ -21,9 +21,13 @@ class ProjectTable extends Migration
             $table->text('objective');
             $table->longText('file')->nullable();
             $table->foreignId('user_id')
-                    ->constrained('users');
-            $table->foreignId('prgramme_id')
-                ->constrained('programme');
+                    ->constrained('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->foreignId('programme_id')
+                    ->constrained('programmes')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }

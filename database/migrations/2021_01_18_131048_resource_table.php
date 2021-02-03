@@ -18,7 +18,9 @@ class ResourceTable extends Migration
             $table->string('title')->unique();
             $table->text('description')->nullable();
             $table->foreignId('user_id')
-            ->constrained('users');
+                    ->constrained('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }

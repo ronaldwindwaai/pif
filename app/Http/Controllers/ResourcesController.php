@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreResourceRequest;
+use App\Models\Programme;
 use App\Models\Resource;
 use Exception;
 use Illuminate\Http\Request;
@@ -26,7 +27,7 @@ class ResourcesController extends Controller
     {
         $title = 'List of Resources';
         $resources = Resource::all();
-        $columns = $this->resource->get_table_columns();
+        $columns = $this->resource->get_columns();
 
         $only_columns = Arr::where($columns, function ($value, $key) {
 
@@ -64,14 +65,14 @@ class ResourcesController extends Controller
 
             $validated = $request->validated();
 
-            $resource = new Resource($validated);
+            $resource = new Programme($validated);
             $resource->user_id = Auth::user()->id;
             $resource->save();
 
             //$request->session()->flash('success', 'Resource was successfully created..');
 
             return \redirect()
-                ->route('resources.index')->withStatus('Resource was successfully created..');
+                ->route('programmes.index')->withStatus('Resource was successfully created..');
         } catch (Exception $exception) {
             return \redirect()
                     ->back()

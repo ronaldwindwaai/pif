@@ -45,7 +45,7 @@ class User extends Authenticatable
         'id',
         'name',
         'email',
-        'created_date',
+        'created_at',
     ];
 
     public function get_columns()

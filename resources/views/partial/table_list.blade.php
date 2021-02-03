@@ -32,28 +32,30 @@
                         </tr>
                     </thead>
                     @endif
-                    <form action="{{ $form }}" method="POST">
                         <tbody>
                             @foreach ($data as $row)
                             <tr>
-                                <td><input type="checkbox" class="checkboxes" name="id[]" value="{{ $row->id }}" /></td>
-                                @foreach ($columns as $column)
-                                <td>{{ $row->$column }}</td>
-                                @endforeach
                                 <td>
-                                    <a href="{{ route('resources.edit',$row->id) }}" class="btn btn-info btn-sm"><i
+                                    <input type="checkbox" class="checkboxes" name="id[]" value="{{ $row->id }}" /></td>
+                                    @foreach ($columns as $column)
+                                        <td>{{ $row->$column }}</td>
+                                    @endforeach
+                                <td>
+                                    <a href="{{ route($page.'.edit',$row->id) }}" class="btn btn-info btn-sm"><i
                                             class="feather icon-edit"></i>&nbsp;Edit </a>
-                                    <form action="{{ route('resources.destroy', $row->id) }}" method="POST">
+                                    <a href="{{ route($page.'.show', $row->id) }}" title="show" class="btn btn-info btn-sm">
+                                        <i class="fas fa-eye icon-show"></i>&nbsp;Show
+                                    </a>
+                                    <form id="delete-form{{ $row->id }}" action="{{ route($page.'.destroy', $row->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm"><i
-                                                class="feather icon-trash-2"></i>&nbsp;Delete</button>
+                                        <a href="#" onclick="document.getElementById('delete-form{{ $row->id }}').submit();" class="btn btn-danger btn-sm">
+                                        <i class="feather icon-trash-2"></i>&nbsp;Delete</a>
                                     </form>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
-                    </form>
                     <tfoot>
                         <th><a href="#" onclick="selectAll();" class="">SELECT ALL</a></th>
                         @foreach ($columns as $column)
@@ -67,8 +69,5 @@
         </div>
     </div>
 </div>
-<script>
 
-
-</script>
 @include('partial.modal.delete.delete-confirmation')

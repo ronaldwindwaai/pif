@@ -23,7 +23,7 @@ class Project extends Model
         'title',
         'date_from',
         'date_to',
-        'created_date',
+        'created_at',
     ];
 
     public function get_columns()

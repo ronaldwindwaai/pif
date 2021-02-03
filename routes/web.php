@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\ProgrammeController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\RecordingController;
 use App\Http\Controllers\ResourcesController;
@@ -27,6 +28,7 @@ Route::get('/login', function () {
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('programmes', ProgrammeController::class);
     Route::resource('projects', ProjectsController::class);
     Route::resource('resources', ResourcesController::class);
     Route::resource('support', SupportController::class);
