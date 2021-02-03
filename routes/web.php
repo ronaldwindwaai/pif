@@ -29,6 +29,7 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('programmes', ProgrammeController::class);
+    Route::delete('peogrammes/delete_select/', [ProgrammeController::class, 'delete_select'])->name('delete_selected');
     Route::resource('projects', ProjectsController::class);
     Route::resource('resources', ResourcesController::class);
     Route::resource('support', SupportController::class);

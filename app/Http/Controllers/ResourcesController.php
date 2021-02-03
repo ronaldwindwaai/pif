@@ -3,20 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreResourceRequest;
-use App\Models\Programme;
 use App\Models\Resource;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ResourcesController extends Controller
 {
     private $resource;
+    private $page;
 
     public function __construct()
     {
         $this->resource = new Resource();
+        $this->page = 'resources';
     }
     /**
      * Display a listing of the resource.
@@ -25,20 +26,28 @@ class ResourcesController extends Controller
      */
     public function index()
     {
-        $title = 'List of Resources';
-        $resources = Resource::all();
-        $columns = $this->resource->get_columns();
+        try {
 
-        $only_columns = Arr::where($columns, function ($value, $key) {
+            $title = 'List of Resources';
 
-            return $value === 'title' || $value === 'project_title'
-            || $value === 'activity_name' || $value === 'date_from' || $value === 'date_to' || $value === 'venue';
-        });
-        return view('pages.resource.index')
-        ->with('data', $resources)
-            ->with('columns', $only_columns)
-            ->with('title', $title);
-    }
+            $resources = DB::table('resources')
+            ->join('users', 'resources.user_id', '=', 'users.id')
+            ->select('resources.id', 'resources.title', 'users.name', 'resources.created_at')
+            ->get();
+
+            $columns    =   $this->resource->get_columns();
+
+            return view('pages.resource.index')
+            ->with('data', $resources)
+                ->with('columns', $columns)
+                ->with('title', $title);
+
+        } catch (Exception $exception) {
+
+            return \redirect()
+                ->back()
+                ->withErrors($exception->getMessage());
+        }    }
 
     /**
      * Show the form for creating a new resource.
@@ -50,7 +59,9 @@ class ResourcesController extends Controller
         $title = 'Add a Resource';
 
         return view('pages.resource.add')
+            ->with('page', $this->page)
             ->with('title', $title);
+
     }
 
     /**
@@ -65,14 +76,14 @@ class ResourcesController extends Controller
 
             $validated = $request->validated();
 
-            $resource = new Programme($validated);
+            $resource = new Resource($validated);
             $resource->user_id = Auth::user()->id;
             $resource->save();
 
             //$request->session()->flash('success', 'Resource was successfully created..');
 
             return \redirect()
-                ->route('programmes.index')->withStatus('Resource was successfully created..');
+                ->route('resources.index')->withStatus('The  (' . strtoupper($resource->title) . ') Resource was successfully created..');
         } catch (Exception $exception) {
             return \redirect()
                     ->back()
@@ -88,7 +99,22 @@ class ResourcesController extends Controller
      */
     public function show(Resource $resource)
     {
-        //
+        try {
+
+            $title = $resource->title;
+
+            $columns    =   $this->resource->get_columns();
+
+            return view('pages.resource.show')
+            ->with('data', $resource)
+                ->with('columns', $columns)
+                ->with('page', $this->page)
+                ->with('title', $title);
+        } catch (Exception $exception) {
+            return \redirect()
+                ->back()
+                ->withErrors($exception->getMessage());
+        }
     }
 
     /**
@@ -99,7 +125,20 @@ class ResourcesController extends Controller
      */
     public function edit(Resource $resource)
     {
-        //
+        try {
+
+            $title = $resource->title;
+
+            return view('pages.resource.edit')
+            ->with('data', $resource)
+                ->with('page', $this->page)
+                ->with('title', $title);
+        } catch (Exception $exception) {
+            dd($exception);
+            return \redirect()
+                ->back()
+                ->withErrors($exception->getMessage());
+        }
     }
 
     /**
@@ -109,9 +148,21 @@ class ResourcesController extends Controller
      * @param  \App\Models\Resource  $resource
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Resource $resource)
+    public function update(StoreResourceRequest $request, Resource $resource)
     {
-        //
+        try {
+
+            $validated = $request->validated();
+
+            $resource->update($validated);
+
+            return \redirect()
+                ->route('resources.index')->withStatus('The  (' . strtoupper($resource->title) . ') Resource was successfully updated..');
+        } catch (Exception $exception) {
+            return \redirect()
+                ->back()
+                ->withErrors($exception->getMessage());
+        }
     }
 
     /**
@@ -123,13 +174,15 @@ class ResourcesController extends Controller
     public function destroy(Resource $resource)
     {
         try {
-            dd($resource);
+            $title = $resource->title;
+            $resource->delete();
+
             return \redirect()
-                ->route('resources.index')->withStatus('Resource was successfully deleted..');
+                ->route('resource.index')
+                ->withStatus('Successfully deleted the (' . strtoupper($title) . ') Resource');
         } catch (Exception $exception) {
-            return \redirect()
-                ->back()
-                ->withErrors($exception->getMessage());
+            dd($exception);
+            return \redirect()->back()->with('error', $exception->getMessage());
         }
     }
 }

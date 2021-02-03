@@ -31,8 +31,9 @@ class ProgrammeController extends Controller
             $title = 'List of Programmes';
 
             $programmes = DB::table('programmes')
-            ->select('id', 'title', 'created_at')
-            ->get();
+                        ->join('users', 'programmes.user_id', '=', 'users.id')
+                        ->select('programmes.id', 'programmes.title','users.name', 'programmes.created_at')
+                        ->get();
 
             $columns    =   $this->programme->get_columns();
 
@@ -42,6 +43,7 @@ class ProgrammeController extends Controller
             ->with('title', $title);
 
         } catch (Exception $exception) {
+            dd($exception);
             return \redirect()
                 ->back()
                 ->withErrors($exception->getMessage());
@@ -57,10 +59,8 @@ class ProgrammeController extends Controller
     {
         try {
             $title = 'Add a Programme';
-            $programmes = Programme::all();
 
             return view('pages.programme.add')
-                ->with('projects', $programmes)
                 ->with('page', $this->page)
                 ->with('title', $title);
         }catch(Exception $exception)
@@ -109,13 +109,15 @@ class ProgrammeController extends Controller
 
             $title = $programme->title;
 
-            return view('pages.programme.show')
-                ->with('data', $programme)
-                ->with('page', $this->page)
-                ->with('title', $title);
+            $columns    =   $this->programme->get_columns();
+
+            return view('pages.programme.index')
+            ->with('data', $programme)
+            ->with('columns', $columns)
+            ->with('page', $this->page)
+            ->with('title', $title);
 
         } catch (Exception $exception) {
-            dd($exception);
             return \redirect()
                 ->back()
                 ->withErrors($exception->getMessage());
@@ -189,5 +191,10 @@ class ProgrammeController extends Controller
             dd($exception);
             return \redirect()->back()->with('error', $exception->getMessage());
         }
+    }
+
+    public function delete_selected($id)
+    {
+        dd($id);
     }
 }

@@ -16,10 +16,7 @@ class ProjectTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->dateTime('date_from');
-            $table->dateTime('date_to');
             $table->text('objective');
-            $table->longText('file')->nullable();
             $table->foreignId('user_id')
                     ->constrained('users')
                     ->onUpdate('cascade')

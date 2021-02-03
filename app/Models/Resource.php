@@ -19,6 +19,7 @@ class Resource extends Model
     private $columns = [
         'id',
         'title',
+        'name',
         'created_at',
     ];
 

@@ -17,6 +17,7 @@ class Programme extends Model
     private $columns = [
         'id',
         'title',
+        'name',
         'created_at',
     ];
 
@@ -29,5 +30,10 @@ class Programme extends Model
     public function meetings()
     {
         return $this->hasMany(Meeting::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

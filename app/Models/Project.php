@@ -21,8 +21,8 @@ class Project extends Model
 
     private $columns = [
         'title',
-        'date_from',
-        'date_to',
+        'name',
+        'programme',
         'created_at',
     ];
 

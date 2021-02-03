@@ -5,24 +5,16 @@
 @section('css')
 <!-- data tables css -->
 <link rel="stylesheet" href="{{ asset('assets/css/plugins/dataTables.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/plugins/select.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/plugins/fixedHeader.bootstrap4.min.css') }}">
 @endsection
 @section('js')
 <!-- datatable Js -->
 <script src="{{ asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
 <script src="{{ asset('assets/js/plugins/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{ asset('assets/js/plugins/dataTables.select.min.js')}}"></script>
-<script src="{{ asset('assets/js/pages/data-select-custom.js')}}"></script>
-
-<!-- jquery-validation Js -->
-<script src="{{ asset('assets/js/plugins/jquery.validate.min.js')}}"></script>
-<!-- form-picker-custom Js -->
-<script src="{{ asset('assets/js/pages/form-validation.js')}}"></script>
-<!-- select2 Js -->
-<script src="{{ asset('assets/js/plugins/select2.full.min.js')}}"></script>
-<!-- form-select-custom Js -->
-<script src="{{ asset('assets/js/pages/form-select-custom.js')}}"></script>
-
+<script src="{{ asset('assets/js/plugins/dataTables.colReorder.min.js')}}"></script>
+<script src="{{ asset('assets/js/plugins/dataTables.fixedHeader.min.js')}}"></script>
+<script src="{{ asset('assets/js/pages/data-header-custom.js')}}"></script>
+<!-- Notofication Js -->
 <script src="{{ asset('assets/js/plugins/bootstrap-notify.min.js')}}"></script>
 <script src="{{ asset('assets/js/pages/ac-notification.js')}}"></script>
 <script>
@@ -55,7 +47,7 @@
     notify('{{ session('status')}}','success');
 @elseif($errors->any())
     @foreach($errors->all() as $error)
-        notify('{{ $error}}','error');
+        notify('{{ $error}}','danger');
     @endforeach
 @endif
 });
@@ -66,7 +58,7 @@
     'title' =>  $title,
     'data'  =>  $data,
     'columns'  =>  $columns,
-    'form' => 'Resource',
+    'form' => 'Resources',
     'page' => 'resources',
 ])
 @endsection

@@ -25,7 +25,7 @@
             $.notify({
                 message: message
             }, {
-                type: 'danger',
+                type: 'warning',
                 allow_dismiss: true,
                 label: 'Cancel',
                 className: 'btn-xs btn-inverse',
@@ -62,15 +62,16 @@
                 <h5>{{ $title }}</h5>
             </div>
             <div class="card-body">
-                <form id="form" action="{{ route($page.'.store') }}" method="POST"
+                <form id="form" action="{{ route($page.'.update',$data->id) }}" method="POST"
                     enctype="multipart/form-data">
+                    @method('PATCH')
                     @csrf
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label class="form-label" for="title">Title</label>
                                 <input id="title" type="text" class="form-control @error('title') is-invalid @enderror"  @error('title') aria-invalid="true" @enderror
-                                    name="title" required placeholder="Name of the Programme" value="{{ old('title') }}">
+                                    name="title" required placeholder="Name of the Resources" value="{{ $data->title }}">
                             </div>
                         </div>
 
@@ -78,7 +79,7 @@
                             <div class="form-group">
                                 <label class="form-label" for="description">Description</label>
                                 <textarea class="form-control @error('title') is-invalid @enderror"  @error('description') required aria-invalid="true" @enderror name="description" id="description"
-                                    placeholder="Programme Description">{{ old('description') }}</textarea>
+                                    placeholder="Resource Description">{{ $data->description }}</textarea>
                             </div>
                         </div>
                     </div>

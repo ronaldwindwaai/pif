@@ -12,8 +12,39 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn  btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" id="modal-delete-button" class="btn  btn-danger" data-dismiss="modal">Delete</button>
+                <button type="button" id="modal-delete-button" class="btn  btn-danger"
+                    data-dismiss="modal">Delete</button>
             </div>
         </div>
     </div>
 </div>
+<script>
+    window.addEventListener('load', function () {
+        var selected = [];
+        $('#modal-delete-button').click(function () {
+            $('.checkboxes').each(function () {
+                if ($(".checkboxes").prop("checked") == true) {
+                    selected.push($(".checkboxes").val());
+                }
+                //console.log(selected);
+            });
+
+            $.ajax({
+                url: "{{ url("http://localhost/programmes/") }}"+selected.join(),
+               type: 'DELETE',
+                dataType: "json",
+                data: {
+                    'ids[]': selected.join(),
+                    "_method": 'DELETE',
+                    "_token":'{{ csrf_token() }}',
+                },
+                success: function (data) {
+                    console.log('Success')
+                },
+
+            })
+             console.log("It failed");
+        })
+    });
+
+</script>

@@ -28,9 +28,15 @@ class ProjectsController extends Controller
 
         $title = 'List of Projects';
 
-        $projects = DB::table('projects')
+        /*$projects = DB::table('projects')
             ->select('id','title', 'date_from', 'date_to', 'created_at')
-            ->get();
+            ->get();*/
+
+        $projects = DB::table('projects')
+        ->join('users', 'projects.user_id', '=', 'users.id')
+        ->join('programmes', 'programmes.id', '=', 'projects.programme_id')
+        ->select('projects.id', 'projects.title', 'users.name', 'programmes.title as programme', 'projects.created_at')
+        ->get();
 
         $columns    =   $this->project->get_columns();
 
