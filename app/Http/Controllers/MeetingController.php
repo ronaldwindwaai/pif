@@ -35,7 +35,9 @@ class MeetingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file = $request->file('file')->storeAs('uploads', $request->file('file')->getClientOriginalName());
+        $resource = Resource::find($validated);
+        $project->resources()->attach($resource);
     }
 
     /**

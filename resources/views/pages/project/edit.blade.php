@@ -39,12 +39,25 @@
                                     name="title" required placeholder="Name of the Resources" value="{{ $data->title }}">
                             </div>
                         </div>
-
+                        @if (!empty($programmes))
                         <div class="col-md-10">
                             <div class="form-group">
-                                <label class="form-label" for="description">Description</label>
-                                <textarea class="form-control @error('title') is-invalid @enderror"  @error('description') required aria-invalid="true" @enderror name="description" id="description"
-                                    placeholder="Resource Description">{{ $data->description }}</textarea>
+                            <h5>Programme</h5>
+                            <p>Kindly select the programme this project belongs too.</p>
+                            <select class="js-example-basic-multiple col-md-6" name="programme_id">
+                                @foreach ($programmes as $programme)
+                                    <option {{ ($data->programme_id == $programme->id)?'selected' :'' }} value="{{ $programme->id }}">{{ $programme->title }}</option>
+                                @endforeach
+                            </select>
+                            </div>
+                        </div>
+                        @endif
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label class="form-label" for="objective">Objective</label>
+                                <textarea class="form-control @error('objective') is-invalid @enderror"
+                                @error('objective') required aria-invalid="true" @enderror name="objective" id="objective"
+                                    placeholder="Project objective">{{ $data->objective }}</textarea>
                             </div>
                         </div>
                     </div>

@@ -21,8 +21,8 @@
     'title' =>  $title,
     'data'  =>  $data,
     'columns'  =>  $columns,
-    'form' => 'Resource',
-    'page' => 'resources',
+    'form' => 'Project',
+    'page' => 'projects',
 ])
 <!-- [ Main Content ] end -->
 @endsection

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class ResourcesController extends Controller
+class ResourceController extends Controller
 {
     private $resource;
     private $page;
@@ -32,7 +32,7 @@ class ResourcesController extends Controller
 
             $resources = DB::table('resources')
             ->join('users', 'resources.user_id', '=', 'users.id')
-            ->select('resources.id', 'resources.title', 'users.name', 'resources.created_at')
+            ->select('resources.id', 'resources.title', 'users.name as added_by', 'resources.created_at')
             ->get();
 
             $columns    =   $this->resource->get_columns();
@@ -100,6 +100,11 @@ class ResourcesController extends Controller
     public function show(Resource $resource)
     {
         try {
+            $resource = DB::table('resources')
+            ->join('users', 'resources.user_id', '=', 'users.id')
+            ->where('resources.id', $resource->id)
+            ->select('resources.id', 'resources.title', 'users.name as added_by', 'resources.created_at')
+            ->first();
 
             $title = $resource->title;
 
@@ -178,7 +183,7 @@ class ResourcesController extends Controller
             $resource->delete();
 
             return \redirect()
-                ->route('resource.index')
+                ->route('resources.index')
                 ->withStatus('Successfully deleted the (' . strtoupper($title) . ') Resource');
         } catch (Exception $exception) {
             dd($exception);

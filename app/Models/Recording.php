@@ -18,11 +18,22 @@ class Recording extends Model
     private $columns = [
         'id',
         'title',
-        'url_recording',
+        'meeting_name',
+        'added_by',
     ];
 
     public function get_columns()
     {
         return $this->columns;
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function meetings()
+    {
+        return $this->belongsTo(Meeting::class);
     }
 }

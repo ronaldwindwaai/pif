@@ -36,15 +36,35 @@
                             <div class="form-group">
                                 <label class="form-label" for="title">Title</label>
                                 <input id="title" type="text" class="form-control @error('title') is-invalid @enderror"  @error('title') aria-invalid="true" @enderror
-                                    name="title" required placeholder="Name of the Resources" value="{{ $data->title }}">
+                                    name="title" required placeholder="Name of the Programme" value="{{ $data->title }}">
+                            </div>
+                        </div>
+                        @if (!empty($meetings))
+                        <div class="col-md-10">
+                            <div class="form-group">
+                            <h5>Meeting</h5>
+                            <p>Kindly select the meeting this recordings was taken from.</p>
+                            <select class="js-example-basic-multiple col-md-6" name="meeting_id">
+                                @foreach ($meetings as $meeting)
+                                    <option {{ ($data->meeting_id == $meeting->id)?'selected' :'' }} value="{{ $meeting->id }}">{{ $meeting->title }}</option>
+                                @endforeach
+                            </select>
+                            </div>
+                        </div>
+                        @endif
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label class="form-label" for="url-recording">URL Recording</label>
+                                <input id="url-recording" type="text" class="form-control @error('url_recording') is-invalid @enderror"  @error('url_recording') aria-invalid="true" @enderror
+                                    name="url_recording" required placeholder="URL of the recordings" value="{{ $data->url_recording }}">
                             </div>
                         </div>
 
                         <div class="col-md-10">
                             <div class="form-group">
-                                <label class="form-label" for="description">Description</label>
-                                <textarea class="form-control @error('title') is-invalid @enderror"  @error('description') required aria-invalid="true" @enderror name="description" id="description"
-                                    placeholder="Resource Description">{{ $data->description }}</textarea>
+                                <label class="form-label" for="credentials">Credentials</label>
+                                <textarea class="form-control @error('credentials') is-invalid @enderror"  @error('credentials')  aria-invalid="true" @enderror name="credentials" id="credentials"
+                                    placeholder="Credentials">{{ $data->credentials }}</textarea>
                             </div>
                         </div>
                     </div>

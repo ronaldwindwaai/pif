@@ -26,7 +26,7 @@
                         <tr>
                             <!--<th><a href="javascript:;" class="select-all">Select All</a></th>-->
                             @foreach ($columns as $column)
-                            <th>{{ str_replace('_',' ',$column) }}</th>
+                                <th>{{ str_replace('_',' ',$column) }}</th>
                             @endforeach
                             <th></th>
                         </tr>

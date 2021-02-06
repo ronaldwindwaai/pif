@@ -52,7 +52,10 @@ class User extends Authenticatable
     {
         return $this->columns;
     }
-
+    public function programme()
+    {
+        return $this->hasMany(Programme::class);
+    }
 
     public function projects()
     {

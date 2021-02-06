@@ -13,15 +13,13 @@ class Project extends Model
 
     protected $fillable = [
         'title',
-        'date_from',
-        'date_to',
         'objective',
         'file',
     ];
 
     private $columns = [
         'title',
-        'name',
+        'added_by',
         'programme',
         'created_at',
     ];
@@ -45,6 +43,4 @@ class Project extends Model
     {
         return $this->hasMany(Meeting::class);
     }
-
-
 }

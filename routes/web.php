@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\ProgrammeController;
-use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RecordingController;
-use App\Http\Controllers\ResourcesController;
+use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\SupportController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,9 +30,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('programmes', ProgrammeController::class);
     Route::delete('peogrammes/delete_select/', [ProgrammeController::class, 'delete_select'])->name('delete_selected');
-    Route::resource('projects', ProjectsController::class);
-    Route::resource('resources', ResourcesController::class);
+    Route::resource('projects', ProjectController::class);
+    Route::resource('resources', ResourceController::class);
     Route::resource('support', SupportController::class);
-    Route::resource('meeting', MeetingController::class);
-    Route::resource('recording', RecordingController::class);
+    Route::resource('meetings', MeetingController::class);
+    Route::resource('recordings', RecordingController::class);
+    Route::resource('users', UserController::class);
 });

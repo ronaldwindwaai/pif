@@ -18,7 +18,6 @@ class CreateRecordingsTable extends Migration
             $table->string('title');
             $table->text('url_recording')->nullable();
             $table->longText('credentials')->nullable();
-            $table->longText('file')->nullable();
             $table->foreignId('user_id')
                     ->constrained('users')
                     ->onUpdate('cascade')

@@ -9,33 +9,32 @@
                 <div class="col-sm-6">
                 </div>
             </div>
+
             @if (!empty($data) && !empty($columns))
             <div class="dt-responsive table-responsive">
                 <table class="table table-striped table-bordered nowrap">
-
                     <tbody>
                          @foreach ($columns as $column)
-                            <tr><td bgcolor="#aaa"><strong>{{ strtoupper(str_replace('_',' ',$column)) }}</strong></td><td>{{ $data->$column }}</td></tr>
+                            <tr>
+                                <td bgcolor="#dcd"><strong>{{ strtoupper(str_replace('_',' ',$column)) }}</strong></td>
+                                <td>{{ $data->$column }}</td>
+                            </tr>
                         @endforeach
-
                     </tbody>
                 </table>
                 <div class="col-md-10">
-                        <div class="form-group">
-                            <a href="{{ route($page.'.index') }}" class="btn btn-info btn"><i
+                    <div class="form-group">
+                        <a href="{{ route($page.'.index') }}" class="btn btn-info btn"><i
                                     class="feather icon-edit"></i>&nbsp;Back </a>
-                            <a href="{{ route($page.'.edit',$data->id) }}" class="btn btn-info btn"><i
+                        <a href="{{ route($page.'.edit',$data->id) }}" class="btn btn-info btn"><i
                                     class="feather icon-edit"></i>&nbsp;Edit </a>
-                            <form style="display:inline-block" id="delete-form{{ $data->id }}" action="{{ route($page.'.destroy', $data->id) }}"
-                                method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <a href="#"
-                                    onclick="confirm('Are you sure, you want to delete this programme?')?document.getElementById('delete-form{{ $data->id }}').submit():''"
-                                    class="btn btn-danger btn">
-                                    <i class="feather icon-trash-2"></i>&nbsp;Delete</a>
-                        </div>
+                        <form style="display:inline-block" id="delete-form{{ $data->id }}" action="{{ route($page.'.destroy', $data->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <a href="#" onclick="confirm('Are you sure, you want to delete this programme?')?document.getElementById('delete-form{{ $data->id }}').submit():''" class="btn btn-danger btn">
+                                <i class="feather icon-trash-2"></i>&nbsp;Delete</a>
                     </div>
+                </div>
             </div>
             @endif
         </div>

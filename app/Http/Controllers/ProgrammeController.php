@@ -29,10 +29,9 @@ class ProgrammeController extends Controller
         try {
 
             $title = 'List of Programmes';
-
             $programmes = DB::table('programmes')
                         ->join('users', 'programmes.user_id', '=', 'users.id')
-                        ->select('programmes.id', 'programmes.title','users.name', 'programmes.created_at')
+                        ->select('programmes.id', 'programmes.title','users.name as added_by', 'programmes.created_at')
                         ->get();
 
             $columns    =   $this->programme->get_columns();
@@ -106,12 +105,16 @@ class ProgrammeController extends Controller
     public function show(Programme $programme)
     {
         try {
+            $programme = DB::table('programmes')
+                ->join('users', 'programmes.user_id', '=', 'users.id')
+                ->where('programmes.id', $programme->id)
+                ->select('programmes.id', 'programmes.title', 'users.name as added_by', 'programmes.created_at')
+                ->first();
 
             $title = $programme->title;
-
             $columns    =   $this->programme->get_columns();
 
-            return view('pages.programme.index')
+            return view('pages.programme.show')
             ->with('data', $programme)
             ->with('columns', $columns)
             ->with('page', $this->page)
@@ -133,9 +136,7 @@ class ProgrammeController extends Controller
     public function edit(Programme $programme)
     {
         try {
-
             $title = $programme->title;
-
             return view('pages.programme.edit')
             ->with('data', $programme)
                 ->with('page', $this->page)
@@ -158,10 +159,10 @@ class ProgrammeController extends Controller
     public function update(StoreProgrammeRequest $request, Programme $programme)
     {
         try {
-
             $validated = $request->validated();
-
-            $programme->update($validated);
+            $programme->fill($validated);
+            $programme->user_id = Auth::user()->id;
+            $programme->save();
 
             return \redirect()
                 ->route('programmes.index')->withStatus('The  (' . strtoupper($programme->title) . ') Programme was successfully updated..');
@@ -191,10 +192,5 @@ class ProgrammeController extends Controller
             dd($exception);
             return \redirect()->back()->with('error', $exception->getMessage());
         }
-    }
-
-    public function delete_selected($id)
-    {
-        dd($id);
     }
 }

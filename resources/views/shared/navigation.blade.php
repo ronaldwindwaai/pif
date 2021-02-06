@@ -41,7 +41,7 @@
                 </li>
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-layers"></i></span><span class="pcoded-mtext">Programmes</span></a>
+                                class="feather icon-align-justify"></i></span><span class="pcoded-mtext">Programmes</span></a>
                     <ul class="pcoded-submenu">
                         <li><a href="{{ route('programmes.create') }}">Add A Programme</a></li>
                         <li><a href="{{ route('programmes.index') }}">List All Programmes</a></li>
@@ -59,8 +59,24 @@
                 </li>
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-layers"></i></span><span class="pcoded-mtext">Resources</span><span
+                                class="feather icon-briefcase"></i></span><span class="pcoded-mtext">Meetings</span></a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{{ route('meetings.create') }}">Setup A Meeting</a></li>
+                        <li><a href="{{ route('meetings.index') }}">List All Meetings</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-at-sign"></i></span><span class="pcoded-mtext">Recordings</span><span
                             class="pcoded-badge badge badge-success">100+</span></a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{{ route('recordings.create') }}">Add A Recordings</a></li>
+                        <li><a href="{{ route('recordings.index') }}">List All Recordings</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-layers"></i></span><span class="pcoded-mtext">Resources</span></a>
                     <ul class="pcoded-submenu">
                         <li><a href="{{ route('resources.create') }}">Add A Resource</a></li>
                         <li><a href="{{ route('resources.index') }}">List All Resources</a></li>
@@ -70,9 +86,9 @@
                     <a href="#!" class="nav-link"><span class="pcoded-micon"><i
                                 class="feather icon-users"></i></span><span class="pcoded-mtext">Users</span></a>
                     <ul class="pcoded-submenu">
-                        <li><a href="user-profile.html">Profile</a></li>
-                        <li><a href="user-card.html">Add a User </a></li>
-                        <li><a href="user-list.html">List All Users</a></li>
+                        <li><a href="{{ route('users.create') }}">Profile</a></li>
+                        <li><a href="{{ route('users.create') }}">Add a User </a></li>
+                        <li><a href="{{ route('users.index') }}">List All Users</a></li>
                     </ul>
                 </li>
             </ul>
