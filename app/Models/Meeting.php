@@ -50,6 +50,12 @@ class Meeting extends Model
         return $this->hasMany(Recording::class);
     }
 
+    public function participants()
+    {
+        return $this->hasMany(Participant::class);
+    }
+
+
     public function resources()
     {
         return $this->belongsToMany(Resource::class);

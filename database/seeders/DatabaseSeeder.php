@@ -39,5 +39,6 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Meeting::factory(30)->create();
         \App\Models\Recording::factory(20)->create();
+        \App\Models\Participant::factory(20)->create();
     }
 }
