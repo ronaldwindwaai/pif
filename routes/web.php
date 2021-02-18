@@ -8,6 +8,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RecordingController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\SupportController;
+use App\Http\Controllers\UserController;
 use App\Models\Participant;
 use Illuminate\Support\Facades\Route;
 
@@ -35,14 +36,14 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('peogrammes/delete_select/', [ProgrammeController::class, 'delete_select'])->name('delete_selected');
     Route::resource('projects', ProjectController::class);
     Route::resource('resources', ResourceController::class);
-    Route::resource('support', SupportController::class);
+    Route::resource('supports', SupportController::class);
     Route::resource('meetings', MeetingController::class);
     Route::resource('recordings', RecordingController::class);
     Route::resource('participants', ParticipantController::class);
     Route::get('participants/load', [App\Http\Controllers\ParticipantController::class, 'load'])->name('participants.load');
     Route::post('participants/upload', [App\Http\Controllers\ParticipantController::class, 'upload'])->name('participants.upload');
     Route::resource('users', UserController::class);
-    Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
+    Route::get('/calendars', [CalendarController::class, 'index'])->name('calendar');
 
 
 });

@@ -20,8 +20,6 @@ class Participant extends Model
         'organization',
         'job_title',
         'meeting_id',
-        'file',
-        'file',
     ];
 
     private $columns = [
@@ -40,5 +38,10 @@ class Participant extends Model
     public function meeting()
     {
         return $this->belongsTo(Meeting::class);
+    }
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
     }
 }

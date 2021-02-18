@@ -108,7 +108,7 @@
                     <i class="feather icon-sunset f-40"></i>
                     <h6 class="mt-3">Help?</h6>
                     <p>Please contact us on our email for need any support</p>
-                    <a href="{{ route('support.create') }}" target="_blank"
+                    <a href="{{ route('supports.create') }}" target="_blank"
                         class="btn btn-primary btn-sm text-white m-0">Support</a>
                 </div>
             </div>

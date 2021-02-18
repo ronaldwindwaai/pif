@@ -36,4 +36,9 @@ class Recording extends Model
     {
         return $this->belongsTo(Meeting::class);
     }
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
 }

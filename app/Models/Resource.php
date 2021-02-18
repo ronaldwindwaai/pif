@@ -37,4 +37,8 @@ class Resource extends Model
     {
         return $this->belongsToMany(Meeting::class);
     }
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
 }

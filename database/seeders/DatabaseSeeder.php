@@ -6,6 +6,7 @@ use App\Models\Resource;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,8 +18,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([RolesAndPermissionsSeeder::class]);
-        \App\Models\User::factory(10)->create();
-        \App\Models\User::factory()->create(
+        \App\Models\File::factory(100)->create();
+        \App\Models\User::factory(10)
+                ->create()
+                ->each(function ($user) {
+                    $role = Role::all()->random();
+                    $role->users()->attach($user);
+            });;
+        $admin = \App\Models\User::factory()->create(
             [
                 'name' => 'Ronald Windwaai',
                 'email' => 'ronaldwindwaai@gmail.com',
@@ -27,6 +34,9 @@ class DatabaseSeeder extends Seeder
                 'remember_token' => Str::random(10),
             ]
         );
+        $role = Role::findByName('super-admin');
+        $role->users()->attach($admin);
+
         \App\Models\Programme::factory(5)->create();
         \App\Models\Project::factory(15)->create();
         \App\Models\Resource::factory(10)->create();
@@ -36,9 +46,7 @@ class DatabaseSeeder extends Seeder
                 $random_resource = Resource::all()->random()->pluck('id');
                 $meeting->resources()->attach($random_resource);
             });
-            \App\Models\Support::factory(15)->create();
-
-        \App\Models\Meeting::factory(30)->create();
+        \App\Models\Support::factory(15)->create();
         \App\Models\Recording::factory(20)->create();
         \App\Models\Participant::factory(20)->create();
     }

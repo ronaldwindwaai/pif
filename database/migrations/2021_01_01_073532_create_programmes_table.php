@@ -21,6 +21,11 @@ class CreateProgrammesTable extends Migration
                 ->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->foreignId('file_id')
+                ->nullable()
+                ->constrained('files')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

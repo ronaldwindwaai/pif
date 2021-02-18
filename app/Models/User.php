@@ -79,4 +79,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Resource::class);
     }
+
+    public function file()
+    {
+        return $this->hasMany(File::class);
+    }
 }
+

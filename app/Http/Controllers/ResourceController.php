@@ -159,7 +159,9 @@ class ResourceController extends Controller
 
             $validated = $request->validated();
 
-            $resource->update($validated);
+            $resource->fill($validated);
+            $resource->user_id = Auth::user()->id;
+            $resource->save();
 
             return \redirect()
                 ->route('resources.index')->withStatus('The  (' . strtoupper($resource->title) . ') Resource was successfully updated..');

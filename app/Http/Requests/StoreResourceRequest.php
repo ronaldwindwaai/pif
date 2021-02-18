@@ -26,7 +26,6 @@ class StoreResourceRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => '',
-            'status' => '',
             'user_id' => '',
         ];
     }

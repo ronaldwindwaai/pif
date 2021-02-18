@@ -33,14 +33,14 @@ class Meeting extends Model
         return $this->columns;
     }
 
-    public function programme()
-    {
-        return $this->belongsTo(Programme::class);
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function programme()
+    {
+        return $this->belongsTo(Programme::class);
     }
 
     public function project()
@@ -57,11 +57,14 @@ class Meeting extends Model
     {
         return $this->hasMany(Participant::class);
     }
-
-
     public function resources()
     {
         return $this->belongsToMany(Resource::class);
+    }
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
     }
 
     public function setStatusAttribute($value)

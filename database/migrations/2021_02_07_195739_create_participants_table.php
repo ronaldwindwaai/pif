@@ -28,6 +28,11 @@ class CreateParticipantsTable extends Migration
                     ->constrained('meetings')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
+            $table->foreignId('file_id')
+                    ->nullable()
+                    ->constrained('files')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }

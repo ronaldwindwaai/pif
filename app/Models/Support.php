@@ -19,7 +19,7 @@ class Support extends Model
     private $columns = [
         'id',
         'title',
-        'user',
+        'added_by',
         'status',
     ];
 
@@ -31,5 +31,10 @@ class Support extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
     }
 }

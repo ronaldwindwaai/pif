@@ -23,8 +23,17 @@ class StoreParticipantRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        return
+        [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'registration_date' => 'required|date',
+            'country_code' => 'required',
+            'country' => 'required',
+            'phone',
+            'organization' => 'required',
+            'job_title',
         ];
     }
 }

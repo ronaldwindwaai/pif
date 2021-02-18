@@ -43,4 +43,9 @@ class Project extends Model
     {
         return $this->hasMany(Meeting::class);
     }
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
 }

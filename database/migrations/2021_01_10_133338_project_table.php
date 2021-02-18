@@ -22,7 +22,13 @@ class ProjectTable extends Migration
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
             $table->foreignId('programme_id')
+                    ->nullable()
                     ->constrained('programmes')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->foreignId('file_id')
+                    ->nullable()
+                    ->constrained('files')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
             $table->timestamps();

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\File;
 use App\Models\Meeting;
 use App\Models\Recording;
 use App\Models\User;
@@ -23,12 +24,13 @@ class RecordingFactory extends Factory
      */
     public function definition()
     {
+        $file = File::all()->random();
         return [
-            'title' => $this->faker->title,
+            'title' => $file->title,
             'credentials' => $this->faker->text,
-            'url_recording' => $this->faker->url,
             'user_id'   =>  User::all()->random()->id,
             'meeting_id'   =>  Meeting::all()->random()->id,
+            'file_id' => $file->id,
         ];
     }
 }
