@@ -24,16 +24,34 @@ class MeetingFactory extends Factory
      */
     public function definition()
     {
-        $startingDate = $this->faker->dateTimeThisYear('+1 month');
-        $endingDate   = $this->faker->dateTimeThisYear('+2 month');
+        $days = rand(3, 31);
+
+        $starting_time = $this->faker->dateTimeBetween('this year', '+6 days');
+        $ending_time   = $this->faker->dateTimeBetween($starting_time, strtotime('+6 days'));
+
+
+        $dates = $starting_time->format('d/m/Y').'=>'. $ending_time->format('d/m/Y');
 
         return [
             'title' => $this->faker->title,
-            'starting_date' => $startingDate,
-            'end_date' => $endingDate,
+            'type_of_meeting' => $this->faker->randomElement([
+                'Single',
+                'Specific Days',
+                'Weekly',
+                'Monthly',
+            ]),
+            'date' => $dates,
+            'start_time' => $starting_time->format('H:m:s'),
+            'end_time' => $ending_time->format('H:m:s'),
             'description' =>  $this->faker->realText(),
             'venue' => $this->faker->city . ',' . $this->faker->country,
-            'file' => $this->faker->name . '.xsl',
+            'budget' => $this->faker->name . '.xsl',
+            'status'    => $this->faker->randomElement([
+                'pending',
+                'completed',
+                'postponed',
+                'cancelled',
+            ]),
             'user_id'   =>  User::all()->random()->id,
             'project_id'   =>  Project::all()->random()->id,
             'programme_id'   =>  Programme::all()->random()->id,

@@ -11,24 +11,24 @@ Dashboard
             <div class="col-sm-6">
                 <div class="card support-bar overflow-hidden">
                     <div class="card-body pb-0">
-                        <h2 class="m-0">350</h2>
-                        <span class="text-c-blue">Support Requests</span>
-                        <p class="mb-3 mt-3">Total number of support requests that come in.</p>
+                        <h2 class="m-0">{{ $meetings }}</h2>
+                        <span class="text-c-blue">Meetings</span>
+                        <p class="mb-3 mt-3">Total number of meetings created.</p>
                     </div>
                     <div id="support-chart"></div>
                     <div class="card-footer bg-primary text-white">
                         <div class="row text-center">
                             <div class="col">
                                 <h4 class="m-0 text-white">10</h4>
-                                <span>Open</span>
+                                <span>Pending</span>
                             </div>
                             <div class="col">
                                 <h4 class="m-0 text-white">5</h4>
-                                <span>Running</span>
+                                <span>Postponed</span>
                             </div>
                             <div class="col">
                                 <h4 class="m-0 text-white">3</h4>
-                                <span>Solved</span>
+                                <span>Cancelled</span>
                             </div>
                         </div>
                     </div>
@@ -37,9 +37,9 @@ Dashboard
             <div class="col-sm-6">
                 <div class="card support-bar overflow-hidden">
                     <div class="card-body pb-0">
-                        <h2 class="m-0">350</h2>
-                        <span class="text-c-green">Support Requests</span>
-                        <p class="mb-3 mt-3">Total number of support requests that come in.</p>
+                        <h2 class="m-0">{{ $registered }}</h2>
+                        <span class="text-c-green">Registered</span>
+                        <p class="mb-3 mt-3">Total number of participants registered.</p>
                     </div>
                     <div id="support-chart1"></div>
                     <div class="card-footer bg-success text-white">
@@ -71,8 +71,8 @@ Dashboard
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h4 class="text-c-yellow">$30200</h4>
-                                <h6 class="text-muted m-b-0">All Earnings</h6>
+                                <h4 class="text-c-yellow">{{ $projects }}</h4>
+                                <h6 class="text-muted m-b-0">Projects</h6>
                             </div>
                             <div class="col-4 text-right">
                                 <i class="feather icon-bar-chart-2 f-28"></i>
@@ -96,8 +96,8 @@ Dashboard
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h4 class="text-c-green">290+</h4>
-                                <h6 class="text-muted m-b-0">Page Views</h6>
+                                <h4 class="text-c-green">{{ $programmes }}</h4>
+                                <h6 class="text-muted m-b-0">Programmes</h6>
                             </div>
                             <div class="col-4 text-right">
                                 <i class="feather icon-file-text f-28"></i>
@@ -121,8 +121,8 @@ Dashboard
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h4 class="text-c-red">145</h4>
-                                <h6 class="text-muted m-b-0">Task</h6>
+                                <h4 class="text-c-red">{{ $recordings }}</h4>
+                                <h6 class="text-muted m-b-0">Recordings</h6>
                             </div>
                             <div class="col-4 text-right">
                                 <i class="feather icon-calendar f-28"></i>
@@ -146,8 +146,8 @@ Dashboard
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h4 class="text-c-blue">500</h4>
-                                <h6 class="text-muted m-b-0">Downloads</h6>
+                                <h4 class="text-c-blue">{{ $support_request }}</h4>
+                                <h6 class="text-muted m-b-0">Support</h6>
                             </div>
                             <div class="col-4 text-right">
                                 <i class="feather icon-thumbs-down f-28"></i>
@@ -234,6 +234,14 @@ Dashboard
 <script src="{{ asset('assets/js/plugins/fullcalendar.min.js') }}"></script>
 <script type="text/javascript">
     // Full calendar
+
+
+    function randomDate() {
+        start = new Date()
+        end = new Date('2022')
+        return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
+    }
+
     $(window).on('load', function () {
         $('#external-events .fc-event').each(function () {
             $(this).data('event', {
@@ -252,70 +260,12 @@ Dashboard
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
-            defaultDate: '2018-08-12',
+            defaultDate:  new Date(),
             editable: true,
             droppable: true,
-            events: [{
-                title: 'All Day Event',
-                start: '2018-08-01',
-                borderColor: '#04a9f5',
-                backgroundColor: '#04a9f5',
-                textColor: '#fff'
-            }, {
-                title: 'Long Event',
-                start: '2018-08-07',
-                end: '2018-08-10',
-                borderColor: '#f44236',
-                backgroundColor: '#f44236',
-                textColor: '#fff'
-            }, {
-                id: 999,
-                title: 'Repeating Event',
-                start: '2018-08-09T16:00:00',
-                borderColor: '#f4c22b',
-                backgroundColor: '#f4c22b',
-                textColor: '#fff'
-            }, {
-                id: 999,
-                title: 'Repeating Event',
-                start: '2018-08-16T16:00:00',
-                borderColor: '#3ebfea',
-                backgroundColor: '#3ebfea',
-                textColor: '#fff'
-            }, {
-                title: 'Conference',
-                start: '2018-08-11',
-                end: '2018-08-13',
-                borderColor: '#1de9b6',
-                backgroundColor: '#1de9b6',
-                textColor: '#fff'
-            }, {
-                title: 'Meeting',
-                start: '2018-08-12T10:30:00',
-                end: '2018-08-12T12:30:00'
-            }, {
-                title: 'Lunch',
-                start: '2018-08-12T12:00:00',
-                borderColor: '#f44236',
-                backgroundColor: '#f44236',
-                textColor: '#fff'
-            }, {
-                title: 'Happy Hour',
-                start: '2018-08-12T17:30:00',
-                borderColor: '#a389d4',
-                backgroundColor: '#a389d4',
-                textColor: '#fff'
-            }, {
-                title: 'Birthday Party',
-                start: '2018-08-13T07:00:00'
-            }, {
-                title: 'Click for Google',
-                url: 'http://google.com/',
-                start: '2018-08-28',
-                borderColor: '#a389d4',
-                backgroundColor: '#a389d4',
-                textColor: '#fff'
-            }],
+            events: {
+                url: "{{ route('calendar') }}",
+            },
             drop: function () {
                 if ($('#drop-remove').is(':checked')) {
                     $(this).remove();
@@ -323,6 +273,16 @@ Dashboard
             }
         });
     });
+    function get_calendar() {
+        var calendar_data = [];
+        $.getJSON("{{ route('calendar') }}", { get_param: 'value' }, function(data) {
+        $.each(data, function(index, element) {
+               calendar_data.push(data.data)
+            });
+        });
+        console.log(calendar_data);
 
+        return calendar_data;
+    }
 </script>
 @endsection

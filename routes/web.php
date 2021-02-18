@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ProgrammeController;
@@ -22,14 +23,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('home');
+    return redirect('dashboard');
 });
 Route::get('/login', function () {
     return view('auth.login');
 });
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('programmes', ProgrammeController::class);
     Route::delete('peogrammes/delete_select/', [ProgrammeController::class, 'delete_select'])->name('delete_selected');
     Route::resource('projects', ProjectController::class);
@@ -41,4 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('participants/load', [App\Http\Controllers\ParticipantController::class, 'load'])->name('participants.load');
     Route::post('participants/upload', [App\Http\Controllers\ParticipantController::class, 'upload'])->name('participants.upload');
     Route::resource('users', UserController::class);
+    Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
+
+
 });

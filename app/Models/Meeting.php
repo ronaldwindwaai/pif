@@ -11,17 +11,20 @@ class Meeting extends Model
 
     protected $fillable =   [
         'title',
-        'starting_date',
-        'end_date',
-        'venue',
+        'type_of_meeting',
+        'date',
+        'start_time',
+        'end_time',
         'description',
-        'file',
+        'budget',
+        'venue',
+        'status',
     ];
 
     private $columns = [
         'title',
-        'starting_date',
-        'end_date',
+        'date',
+        'start_time',
         'venue',
     ];
 

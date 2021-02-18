@@ -24,7 +24,6 @@ class CreateParticipantsTable extends Migration
             $table->string('phone');
             $table->string('organization');
             $table->string('job_title');
-            $table->string('file')->nullable();
             $table->foreignId('meeting_id')
                     ->constrained('meetings')
                     ->onUpdate('cascade')

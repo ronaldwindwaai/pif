@@ -16,11 +16,25 @@ class CreateMeetingsTable extends Migration
         Schema::create('meetings', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->dateTime('starting_date');
-            $table->dateTime('end_date')->nullable();
+            $table->enum('type_of_meeting',[
+                'Single',
+                'Specific Days',
+                'Weekly',
+                'Monthly',
+            ]);
+            $table->text('date');
+            $table->time('start_time');
+            $table->time('end_time')->nullable();
             $table->text('description');
-            $table->longText('file')->nullable();
+            $table->longText('budget')->nullable();
             $table->string('venue')->nullable();
+            $table->enum('status',[
+                'pending',
+                'completed',
+                'postponed',
+                'cancelled',
+            ]
+            )->default('pending');
             $table->foreignId('user_id')
                     ->constrained('users')
                     ->onUpdate('cascade')
