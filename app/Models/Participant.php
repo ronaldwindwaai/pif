@@ -25,12 +25,17 @@ class Participant extends Model
     ];
 
     private $columns = [
+        'meeting_title',
         'full_name',
         'registration_date',
-        'country_code',
+        'country',
         'organization',
     ];
 
+    public function get_columns()
+    {
+        return $this->columns;
+    }
 
     public function meeting()
     {

@@ -23,9 +23,9 @@ class Meeting extends Model
 
     private $columns = [
         'title',
-        'date',
-        'start_time',
-        'venue',
+        'meeting_dates',
+        'added_by',
+        'status',
     ];
 
     public function get_columns()
@@ -62,5 +62,10 @@ class Meeting extends Model
     public function resources()
     {
         return $this->belongsToMany(Resource::class);
+    }
+
+    public function setStatusAttribute($value)
+    {
+        $this->attributes['status'] = ucwords($value);
     }
 }
