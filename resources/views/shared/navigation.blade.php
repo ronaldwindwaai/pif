@@ -98,6 +98,7 @@
                         <li><a href="{{ route('users.create') }}">Profile</a></li>
                         <li><a href="{{ route('users.create') }}">Add a User </a></li>
                         <li><a href="{{ route('users.index') }}">List All Users</a></li>
+                        <li><a href="{{ route('roles.index') }}">List Roles</a></li>
                     </ul>
                 </li>
             </ul>

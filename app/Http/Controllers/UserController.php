@@ -38,16 +38,13 @@ class UserController extends Controller
 
             $title = 'List of Users';
 
-            $columns    =   $this->user->get_columns();
-
             return view('pages.user.index')
                 ->with('data', $users)
-                ->with('columns', $columns)
                 ->with('page', $this->page)
                 ->with('title', $title);
 
         } catch (Exception $exception) {
-
+            dd($exception);
             return \redirect()
                 ->back()
                 ->withErrors($exception->getMessage());

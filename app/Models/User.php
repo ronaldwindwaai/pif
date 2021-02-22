@@ -44,13 +44,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    private $columns = [
-        'id',
-        'name',
-        'email',
-        'created_at',
-    ];
-
     public function get_columns()
     {
         return $this->columns;
@@ -84,5 +77,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(File::class);
     }
+
 }
 

@@ -17,10 +17,9 @@
 @include('shared.message.message-reporting')
 @endsection
 @section('content')
-@include('partial.table_list',[
+@include('partial.user_table',[
     'title' =>  $title,
     'data'  =>  $data,
-    'columns'  =>  $columns,
     'form' => 'User',
     'page' => 'users',
 ])

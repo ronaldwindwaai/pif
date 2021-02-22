@@ -17,12 +17,11 @@
 @endsection
 @section('content')
 <!-- [ Main Content ] start -->
-@include('partial.show',[
+@include('partial.user_show',[
     'title' =>  $title,
     'data'  =>  $data,
-    'columns'  =>  $columns,
-    'form' => 'Meeting',
-    'page' => 'meetings',
+    'form' => 'User',
+    'page' => 'users',
 ])
 <!-- [ Main Content ] end -->
 @endsection
