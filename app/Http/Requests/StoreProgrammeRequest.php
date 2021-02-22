@@ -25,6 +25,7 @@ class StoreProgrammeRequest extends FormRequest
     {
         return [
             'title' => 'required',
+            'manager_id' => 'required',
             'description' => '',
         ];
     }

@@ -39,6 +39,19 @@
                                     name="title" required placeholder="Name of the Resources" value="{{ $data->title }}">
                             </div>
                         </div>
+                        @if (!empty($officers))
+                        <div class="col-md-10">
+                            <div class="form-group">
+                            <h5>Officer</h5>
+                            <p>Kindly assign the Officer responsible for this Project.</p>
+                                <select class="js-example-basic-multiple col-md-6" name="officer_id">
+                                    @foreach ($officers as $officer)
+                                    <option {{ ($data->officer_id == $officer->id)?'selected' :'' }} value="{{ $officer->id }}">{{ $officer->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        @endif
                         @if (!empty($programmes))
                         <div class="col-md-10">
                             <div class="form-group">

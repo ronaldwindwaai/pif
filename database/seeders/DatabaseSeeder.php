@@ -24,7 +24,19 @@ class DatabaseSeeder extends Seeder
                 ->each(function ($user) {
                     $role = Role::all()->random();
                     $role->users()->attach($user);
-            });;
+            });
+        \App\Models\User::factory(5)
+            ->create()
+            ->each(function ($user) {
+                $role = Role::findByName('officer');
+                $role->users()->attach($user);
+            });
+        \App\Models\User::factory(5)
+            ->create()
+            ->each(function ($user) {
+                $role = Role::findByName('manager');
+                $role->users()->attach($user);
+            });
         $admin = \App\Models\User::factory()->create(
             [
                 'name' => 'Ronald Windwaai',

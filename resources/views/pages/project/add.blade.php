@@ -26,7 +26,7 @@
                 <h5>{{ $title }}</h5>
             </div>
             <div class="card-body">
-                <form id="validation-form123" action="{{ route('resources.store') }}" method="POST"
+                <form id="validation-form123" action="{{ route($page.'.store') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="row">
@@ -37,12 +37,25 @@
                                     name="title" required placeholder="Name of the Resource" value="{{ old('title') }}">
                             </div>
                         </div>
+                        @if (!empty($officers))
+                        <div class="col-md-10">
+                            <div class="form-group">
+                            <h5>Officer</h5>
+                            <p>Kindly assign the Officer responsible for this Project.</p>
+                                <select class="js-example-basic-multiple col-md-6" name="officer_id">
+                                    @foreach ($officers as $officer)
+                                        <option value="{{ $officer->id }}">{{ $officer->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        @endif
                         @if (!empty($programmes))
                         <div class="col-md-10">
                             <div class="form-group">
                             <h5>Programme</h5>
                             <p>Kindly select the programme this project belongs too.</p>
-                                <select class="js-example-basic-multiple col-md-6" name="programme_id_id">
+                                <select class="js-example-basic-multiple col-md-6" name="programme_id">
                                     @foreach ($programmes as $programme)
                                         <option value="{{ $programme->id }}">{{ $programme->title }}</option>
                                     @endforeach

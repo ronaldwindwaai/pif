@@ -84,7 +84,7 @@
                 </li>
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-layers"></i></span><span class="pcoded-mtext">Participants</span></a>
+                                class="feather icon-tablet"></i></span><span class="pcoded-mtext">Participants</span></a>
                     <ul class="pcoded-submenu">
                         <li><a href="{{ route('participants.create') }}">Add A Participants</a></li>
                         <li><a href="{{ route('participants.load') }}">Load Participants</a></li>

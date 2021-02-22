@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Programme;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Spatie\Permission\Models\Role;
 
 class ProgrammeFactory extends Factory
 {
@@ -24,8 +25,9 @@ class ProgrammeFactory extends Factory
     {
         return [
             'title' => $this->faker->title,
-            'description' => $this->faker->realText(),
-            'user_id'   =>  User::all()->random()->id,
+            'description'   => $this->faker->realText(),
+            'manager_id'    =>  Role::where('name', 'manager')->first()->users()->get()->random()->id,
+            'user_id'       =>  User::all()->random()->id,
         ];
     }
 }

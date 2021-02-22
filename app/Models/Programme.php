@@ -11,13 +11,14 @@ class Programme extends Model
 
     protected $fillable = [
         'title',
+        'manager_id',
         'description',
     ];
 
     private $columns = [
         'id',
         'title',
-        'added_by',
+        'manager',
         'created_at',
     ];
 

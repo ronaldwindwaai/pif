@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ProgrammeController;
@@ -46,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::get('/calendars', [CalendarController::class, 'index'])->name('calendar');
+    Route::get('user', [DashboardController::class, 'get_user_by_role'])->name('user_role');
 
 
 });

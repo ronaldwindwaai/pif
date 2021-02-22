@@ -17,12 +17,15 @@ class ProjectTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('objective');
+            $table->foreignId('officer_id')
+                    ->constrained('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->foreignId('user_id')
                     ->constrained('users')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
             $table->foreignId('programme_id')
-                    ->nullable()
                     ->constrained('programmes')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');

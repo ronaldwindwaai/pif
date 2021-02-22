@@ -13,13 +13,15 @@ class Project extends Model
 
     protected $fillable = [
         'title',
+        'officer_id',
+        'programme_id',
         'objective',
         'file',
     ];
 
     private $columns = [
         'title',
-        'added_by',
+        'officer',
         'programme',
         'created_at',
     ];

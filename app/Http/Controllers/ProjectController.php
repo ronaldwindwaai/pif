@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProjectRequest;
 use App\Models\Programme;
 use App\Models\Project;
-use App\Models\Resource;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class ProjectController extends Controller
 {
@@ -36,9 +36,9 @@ class ProjectController extends Controller
             ->get();*/
 
         $projects = DB::table('projects')
-        ->join('users', 'projects.user_id', '=', 'users.id')
+        ->join('users', 'projects.officer_id', '=', 'users.id')
         ->join('programmes', 'programmes.id', '=', 'projects.programme_id')
-        ->select('projects.id', 'projects.title', 'users.name as added_by', 'programmes.title as programme', 'projects.created_at')
+        ->select('projects.id', 'projects.title', 'users.name as officer', 'programmes.title as programme', 'projects.created_at')
         ->get();
 
         $columns    =   $this->project->get_columns();
@@ -58,10 +58,13 @@ class ProjectController extends Controller
     {
         $title = 'Add a Project';
         $programmes = Programme::all();
+        $officers = Role::where('name', 'officer')->first()->users()->get();
+
         return view('pages.project.add')
             ->with('page', $this->page)
             ->with('programmes',$programmes)
-            ->with('title', $title);
+            ->with('title', $title)
+            ->with('officers',$officers);
     }
 
     /**
@@ -74,10 +77,13 @@ class ProjectController extends Controller
     {
         try{
             $validated = $request->validated();
-            $project = Auth::user()->projects()->programme()->create($validated);
+
+            $project = new Project($validated);
+            $project->user_id = Auth::user()->id;
+            $project->save();
 
             return \redirect()
-                ->route('project.index')->withStatus('The  (' . strtoupper($project->title) . ') Project was successfully created..');
+                ->route('projects.index')->withStatus('The  (' . strtoupper($project->title) . ') Project was successfully created..');
         }catch(Exception $exception){
             dd($exception);
             return \redirect()
@@ -99,10 +105,10 @@ class ProjectController extends Controller
         try {
 
             $project = DB::table('projects')
-                ->join('users', 'projects.user_id', '=', 'users.id')
+                ->join('users', 'projects.officer_id', '=', 'users.id')
                 ->join('programmes', 'programmes.id', '=', 'projects.programme_id')
                 ->where('projects.id', $project->id)
-                ->select('projects.id', 'projects.title', 'users.name as added_by', 'programmes.title as programme', 'projects.created_at')
+                ->select('projects.id', 'projects.title', 'users.name as officer', 'programmes.title as programme', 'projects.created_at')
                 ->first();
 
             $title = $project->title;
@@ -133,11 +139,16 @@ class ProjectController extends Controller
 
             $title = $project->title;
             $programmes = Programme::all();
+            $officers = Role::where('name', 'officer')->first()->users()->get();
+
+
             return view('pages.project.edit')
                 ->with('data', $project)
                 ->with('page', $this->page)
                 ->with('title', $title)
-                ->with('programmes', $programmes);
+                ->with('programmes', $programmes)
+                ->with('officers',$officers);
+
         } catch (Exception $exception) {
             dd($exception);
             return \redirect()
@@ -161,7 +172,6 @@ class ProjectController extends Controller
 
             $project->fill($validated);
             $project->user_id = Auth::user()->id;
-            $project->programme_id = $request->programme_id;
             $project->save();
 
             return \redirect()

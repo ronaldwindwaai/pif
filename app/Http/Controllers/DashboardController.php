@@ -8,7 +8,9 @@ use App\Models\Programme;
 use App\Models\Project;
 use App\Models\Recording;
 use App\Models\Support;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class DashboardController extends Controller
 {
@@ -26,6 +28,11 @@ class DashboardController extends Controller
             ->with('programmes', $this->get_num_of_programmes())
             ->with('recordings', $this->get_num_of_recordings())
             ->with('support_request', $this->get_num_of_support_request());
+    }
+
+    public function get_user_by_role()
+    {
+
     }
 
     private function get_num_of_meetings()

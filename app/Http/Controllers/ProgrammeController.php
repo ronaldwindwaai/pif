@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class ProgrammeController extends Controller
 {
@@ -30,8 +31,8 @@ class ProgrammeController extends Controller
 
             $title = 'List of Programmes';
             $programmes = DB::table('programmes')
-                        ->join('users', 'programmes.user_id', '=', 'users.id')
-                        ->select('programmes.id', 'programmes.title','users.name as added_by', 'programmes.created_at')
+                        ->join('users', 'programmes.manager_id', '=', 'users.id')
+                        ->select('programmes.id', 'programmes.title','users.name as manager', 'programmes.created_at')
                         ->get();
 
             $columns    =   $this->programme->get_columns();
@@ -58,10 +59,12 @@ class ProgrammeController extends Controller
     {
         try {
             $title = 'Add a Programme';
+            $managers = Role::where('name', 'manager')->first()->users()->get();
 
             return view('pages.programme.add')
                 ->with('page', $this->page)
-                ->with('title', $title);
+                ->with('title', $title)
+                ->with('managers',$managers);
         }catch(Exception $exception)
         {
             return \redirect()
@@ -81,7 +84,6 @@ class ProgrammeController extends Controller
         try {
 
             $validated = $request->validated();
-
             $programme = new Programme($validated);
             $programme->user_id = Auth::user()->id;
             $programme->save();
@@ -106,9 +108,9 @@ class ProgrammeController extends Controller
     {
         try {
             $programme = DB::table('programmes')
-                ->join('users', 'programmes.user_id', '=', 'users.id')
+                ->join('users', 'programmes.manager_id', '=', 'users.id')
                 ->where('programmes.id', $programme->id)
-                ->select('programmes.id', 'programmes.title', 'users.name as added_by', 'programmes.created_at')
+                ->select('programmes.id', 'programmes.title', 'users.name as manager', 'programmes.created_at')
                 ->first();
 
             $title = $programme->title;
@@ -137,10 +139,14 @@ class ProgrammeController extends Controller
     {
         try {
             $title = $programme->title;
+            $managers = Role::where('name', 'manager')->first()->users()->get();
+
             return view('pages.programme.edit')
             ->with('data', $programme)
                 ->with('page', $this->page)
-                ->with('title', $title);
+                ->with('title', $title)
+                ->with('managers',$managers);
+
         } catch (Exception $exception) {
             dd($exception);
             return \redirect()

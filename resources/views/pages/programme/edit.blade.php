@@ -39,7 +39,19 @@
                                     name="title" required placeholder="Name of the Programme" value="{{ $data->title }}">
                             </div>
                         </div>
-
+                        @if (!empty($managers))
+                        <div class="col-md-10">
+                            <div class="form-group">
+                            <h5>Manager</h5>
+                            <p>Kindly assign the Manager responsible for this Programme.</p>
+                                <select class="js-example-basic-multiple col-md-6" name="manager_id">
+                                    @foreach ($managers as $manager)
+                                    <option {{ ($data->manager_id == $manager->id)?'selected' :'' }} value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        @endif
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label class="form-label" for="description">Description</label>

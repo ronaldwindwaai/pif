@@ -25,6 +25,8 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             'title' => 'required',
+            'officer_id' => 'required',
+            'programme_id' => 'required',
             'objective' => '',
         ];
     }
