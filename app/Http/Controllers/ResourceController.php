@@ -188,7 +188,6 @@ class ResourceController extends Controller
                 ->route('resources.index')
                 ->withStatus('Successfully deleted the (' . strtoupper($title) . ') Resource');
         } catch (Exception $exception) {
-            dd($exception);
             return \redirect()->back()->with('error', $exception->getMessage());
         }
     }

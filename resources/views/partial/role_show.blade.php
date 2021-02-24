@@ -15,24 +15,12 @@
                 <table class="table table-striped table-bordered nowrap">
                     <tbody>
                         <tr>
-                            <td bgcolor="#dcd"><strong>Full Name</strong></td>
+                            <td bgcolor="#dcd"><strong>Name</strong></td>
                             <td>{{ $data->name }}</td>
                         </tr>
                         <tr>
-                            <td bgcolor="#dcd"><strong>Email Address</strong></td>
-                            <td>{{ $data->email }}</td>
-                        </tr>
-                        <tr>
-                            <td bgcolor="#dcd"><strong>Role</strong></td>
-                            <td>
-                                @foreach ($data->getRoleNames() as $role)
-                                    {{ $role }},
-                                @endforeach
-                            </td>
-                        </tr>
-                        <tr>
                             <td bgcolor="#dcd"><strong>Permissions</strong></td>
-                            <td>
+                             <td>
                                 @foreach ($data->getAllPermissions() as $permission)
                                     {{ $permission->name }},
                                 @endforeach

@@ -34,39 +34,46 @@
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
-                                <label class="form-label" for="title">Title</label>
-                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror"  @error('title') aria-invalid="true" @enderror
-                                    name="title" required placeholder="Name of the Programme" value="{{ $data->title }}">
+                                <label class="form-label" for="name">Name</label>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"  @error('name') aria-invalid="true" @enderror
+                                    name="name" required placeholder="Name of User" value="{{ $data->name }}">
                             </div>
                         </div>
-                        @if (!empty($meetings))
                         <div class="col-md-10">
                             <div class="form-group">
-                            <h5>Meeting</h5>
-                            <p>Kindly select the meeting this recordings was taken from.</p>
-                            <select class="js-example-basic-multiple col-md-6" name="meeting_id">
-                                @foreach ($meetings as $meeting)
-                                    <option {{ ($data->meeting_id == $meeting->id)?'selected' :'' }} value="{{ $meeting->id }}">{{ $meeting->title }}</option>
+                                <label class="form-label" for="email">Email</label>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"  @error('email') aria-invalid="true" @enderror
+                                    name="email" required placeholder="Email Address" value="{{ $data->email }}">
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label class="form-label" for="password">Password</label>
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"  @error('password') aria-invalid="true" @enderror
+                                    name="password" placeholder="Password" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label class="form-label" for="confirm-password">Confirm Password</label>
+                                <input id="confirm-password" type="password" class="form-control @error('confirm-password') is-invalid @enderror"  @error('confirm-password') aria-invalid="true" @enderror
+                                    name="confirm-password" placeholder="Password" value="">
+                            </div>
+                        </div>
+                        @if (!empty($roles))
+                        <div class="col-md-10">
+                            <div class="form-group">
+                            <h5>Role</h5>
+                            <p>Kindly choose the role of this user.</p>
+                            <?php  $user_roles = $data->getRoleNames()->toArray(); ?>
+                            <select class="js-example-basic-multiple col-md-6" name="role_id">
+                                @foreach ($roles as $role)
+                                    <option {{ in_array($role->name, $user_roles)?'selected' :'' }} value="{{ $role->id }}">{{ $role->name }}</option>
                                 @endforeach
                             </select>
                             </div>
                         </div>
                         @endif
-                        <div class="col-md-10">
-                            <div class="form-group">
-                                <label class="form-label" for="url-recording">URL Recording</label>
-                                <input id="url-recording" type="text" class="form-control @error('url_recording') is-invalid @enderror"  @error('url_recording') aria-invalid="true" @enderror
-                                    name="url_recording" required placeholder="URL of the recordings" value="{{ $data->url_recording }}">
-                            </div>
-                        </div>
-
-                        <div class="col-md-10">
-                            <div class="form-group">
-                                <label class="form-label" for="credentials">Credentials</label>
-                                <textarea class="form-control @error('credentials') is-invalid @enderror"  @error('credentials')  aria-invalid="true" @enderror name="credentials" id="credentials"
-                                    placeholder="Credentials">{{ $data->credentials }}</textarea>
-                            </div>
-                        </div>
                     </div>
                     <button type="submit" class="btn  btn-primary">Submit</button>
                 </form>
