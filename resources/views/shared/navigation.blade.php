@@ -2,10 +2,9 @@
 <nav class="pcoded-navbar menu-light ">
     <div class="navbar-wrapper  ">
         <div class="navbar-content scroll-div ">
-
             <div class="">
                 <div class="main-menu-header">
-                    <img class="img-radius" src="{{asset('assets/images/user/avatar-2.jpg')}}" alt="User-Profile-Image">
+                    <img class="img-radius" src="{{asset('assets/images/user/profile-picture.png')}}" alt="User-Profile-Image">
                     <div class="user-details">
                         <div id="more-details">{{ ucwords(Auth::user()->name) }} <i class="fa fa-caret-down"></i></div>
                     </div>
@@ -22,7 +21,6 @@
                                 @csrf
                                 <a href="#" onclick="document.getElementById('logout').submit();" data-toggle="tooltip" title="Logout" class="text-danger"><i
                                     class="feather icon-power"></i></a>
-
                             </form>
 
                         </li>
@@ -95,7 +93,7 @@
                     <a href="#!" class="nav-link"><span class="pcoded-micon"><i
                                 class="feather icon-users"></i></span><span class="pcoded-mtext">Users</span></a>
                     <ul class="pcoded-submenu">
-                        <li><a href="{{ route('users.create') }}">Profile</a></li>
+                        <li><a href="{{ route('users.show',Auth::user()->id) }}">Profile</a></li>
                         <li><a href="{{ route('users.create') }}">Add a User </a></li>
                         <li><a href="{{ route('users.index') }}">List All Users</a></li>
                         <li><a href="{{ route('roles.index') }}">List Roles</a></li>

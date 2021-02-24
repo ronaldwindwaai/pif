@@ -12,6 +12,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SupportController;
 use App\Http\Controllers\UserController;
 use App\Models\Participant;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,6 +49,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('roles', RoleController::class);
     Route::get('/calendars', [CalendarController::class, 'index'])->name('calendar');
     Route::get('user', [DashboardController::class, 'get_user_by_role'])->name('user_role');
-
-
+    Route::get('/logout', function () {
+        Auth::logout();
+        return redirect('login');
+    });
 });
