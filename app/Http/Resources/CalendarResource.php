@@ -73,7 +73,6 @@ class CalendarResource extends JsonResource
             'backgroundColor' => $backgound_colour,
             'textColor'     => $text_colour,
             'url'           => \route('meetings.show',$this->id),
-
         ];
     }
 }

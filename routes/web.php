@@ -4,6 +4,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\ParticipantController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProgrammeController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RecordingController;
@@ -47,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('participants/upload', [App\Http\Controllers\ParticipantController::class, 'upload'])->name('participants.upload');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
+    Route::resource('partners', PartnerController::class);
     Route::get('/calendars', [CalendarController::class, 'index'])->name('calendar');
     Route::get('user', [DashboardController::class, 'get_user_by_role'])->name('user_role');
     Route::get('/logout', function () {
