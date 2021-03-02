@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMeetingRequest;
 use App\Models\Meeting;
+use App\Models\Partner;
+use App\Models\Programme;
+use App\Models\Project;
+use App\Models\Resource;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,6 +40,8 @@ class MeetingController extends Controller
 
             $columns    =   $this->meeting->get_columns();
 
+
+
             return view('pages.meeting.index')
                 ->with('data', $meetings)
                 ->with('columns', $columns)
@@ -59,8 +65,17 @@ class MeetingController extends Controller
         try {
             $title = 'Add a Meeting';
 
+            $resources = Resource::all();
+            $programmes = Programme::all();
+            $projects = Project::all();
+            $partners = Partner::all();
+
             return view('pages.meeting.add')
                 ->with('page', $this->page)
+                ->with('resources', $resources)
+                ->with('programmes', $programmes)
+                ->with('projects', $projects)
+                ->with('partners', $partners)
                 ->with('title', $title);
 
         } catch (Exception $exception) {

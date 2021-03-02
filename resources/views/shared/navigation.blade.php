@@ -90,6 +90,14 @@
                     </ul>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-tablet"></i></span><span class="pcoded-mtext">Partners</span></a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{{ route('partners.create') }}">Add A Partner</a></li>
+                        <li><a href="{{ route('partners.index') }}">List All Partners</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link"><span class="pcoded-micon"><i
                                 class="feather icon-users"></i></span><span class="pcoded-mtext">Users</span></a>
                     <ul class="pcoded-submenu">

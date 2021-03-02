@@ -104,9 +104,9 @@
                         <div class="pro-head">
 										<img src="{{asset('assets/images/user/profile-picture.png')}}" class="img-radius" alt="User-Profile-Image">
 										<span>{{ ucwords(Auth::user()->name) }}</span>
-										<form id="logout" method="POST" action="{{ route('logout') }}">
+										<form id="logout_form" method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <a href="#" onclick="document.getElementById('logout').submit();" data-toggle="tooltip" title="Logout" class="text-danger">
+                                <a href="#" onclick="document.getElementById('logout_form').submit();" data-toggle="tooltip" title="Logout" class="text-danger">
                                     <i class="feather icon-log-out"></i></a>
                             </form>
 									</div>

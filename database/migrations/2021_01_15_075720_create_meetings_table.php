@@ -17,7 +17,7 @@ class CreateMeetingsTable extends Migration
             $table->id();
             $table->string('title');
             $table->enum('type_of_meeting',[
-                'Single',
+                'Single Day',
                 'Specific Days',
                 'Weekly',
                 'Monthly',
@@ -26,7 +26,9 @@ class CreateMeetingsTable extends Migration
             $table->time('start_time');
             $table->time('end_time')->nullable();
             $table->text('description');
-            $table->longText('budget')->nullable();
+            $table->boolean('is_breakout_room_required')->default(false);
+            $table->boolean('is_recording_required')->default(false);
+            $table->boolean('is_attendance_report_required')->default(false);
             $table->string('venue')->nullable();
             $table->enum('status',[
                 'pending',
@@ -45,6 +47,11 @@ class CreateMeetingsTable extends Migration
                     ->onDelete('cascade');
             $table->foreignId('programme_id')
                     ->constrained('programmes')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            $table->foreignId('partner_id')
+                    ->nullable()
+                    ->constrained('partners')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
             $table->foreignId('file_id')

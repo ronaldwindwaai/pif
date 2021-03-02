@@ -52,6 +52,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Programme::factory(5)->create();
         \App\Models\Project::factory(15)->create();
         \App\Models\Resource::factory(10)->create();
+        \App\Models\Partner::factory(20)->create();
         \App\Models\Meeting::factory(35)
             ->create()
             ->each(function ($meeting) {

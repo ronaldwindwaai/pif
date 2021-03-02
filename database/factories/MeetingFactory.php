@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\File;
 use App\Models\Meeting;
+use App\Models\Partner;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
 use App\Models\Project;
@@ -35,7 +37,7 @@ class MeetingFactory extends Factory
         return [
             'title' => $this->faker->title,
             'type_of_meeting' => $this->faker->randomElement([
-                'Single',
+                'Single Day',
                 'Specific Days',
                 'Weekly',
                 'Monthly',
@@ -45,14 +47,18 @@ class MeetingFactory extends Factory
             'end_time' => $ending_time->format('H:m:s'),
             'description' =>  $this->faker->realText(),
             'venue' => $this->faker->city . ',' . $this->faker->country,
-            'budget' => $this->faker->name . '.xsl',
             'status'    => $this->faker->randomElement([
                 'pending',
                 'completed',
                 'postponed',
                 'cancelled',
             ]),
+            'is_breakout_room_required' => $this->faker->boolean(),
+            'is_recording_required' => $this->faker->boolean(),
+            'is_attendance_report_required' => $this->faker->boolean(),
+            'file_id'   =>  File::all()->random()->id,
             'user_id'   =>  User::all()->random()->id,
+            'partner_id'   =>  Partner::all()->random()->id,
             'project_id'   =>  Project::all()->random()->id,
             'programme_id'   =>  Programme::all()->random()->id,
         ];

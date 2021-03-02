@@ -265,6 +265,11 @@ Dashboard
             droppable: true,
             events: {
                 url: "{{ route('calendar') }}",
+                extraParams: function() {
+                    return {
+                        cachebuster: new Date().valueOf()
+                    };
+                 },
             },
             drop: function () {
                 if ($('#drop-remove').is(':checked')) {
@@ -273,16 +278,5 @@ Dashboard
             }
         });
     });
-    function get_calendar() {
-        var calendar_data = [];
-        $.getJSON("{{ route('calendar') }}", { get_param: 'value' }, function(data) {
-        $.each(data, function(index, element) {
-               calendar_data.push(data.data)
-            });
-        });
-        console.log(calendar_data);
-
-        return calendar_data;
-    }
 </script>
 @endsection

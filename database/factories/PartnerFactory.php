@@ -22,7 +22,9 @@ class PartnerFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->jobTitle,
+            'contact_person' => $this->faker->title.' '.$this->faker->firstName(). ' ' . $this->faker->lastName(),
+            'contact_details' => $this->faker->email.' '.$this->faker->phoneNumber,
         ];
     }
 }
