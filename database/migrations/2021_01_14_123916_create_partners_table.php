@@ -18,6 +18,10 @@ class CreatePartnersTable extends Migration
             $table->string('title');
             $table->string('contact_person');
             $table->text('contact_details');
+            $table->foreignId('user_id')
+                    ->constrained('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }

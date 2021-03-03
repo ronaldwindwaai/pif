@@ -37,38 +37,18 @@
                                     name="title" required placeholder="Name of the Resource" value="{{ old('title') }}">
                             </div>
                         </div>
-                        @if (!empty($officers))
                         <div class="col-md-10">
                             <div class="form-group">
-                            <h5>Officer</h5>
-                            <p>Kindly assign the Officer responsible for this Project.</p>
-                                <select class="js-example-basic-multiple col-md-6" name="officer_id">
-                                    @foreach ($officers as $officer)
-                                        <option value="{{ $officer->id }}">{{ $officer->name }}</option>
-                                    @endforeach
-                                </select>
+                                <label class="form-label" for="contact-person">Contact Person</label>
+                                <input id="contact-person" type="text" class="form-control @error('contact_person') is-invalid @enderror"  @error('contact_person') aria-invalid="true" @enderror
+                                    name="contact_person" required placeholder="Name of contact person" value="{{ old('contact_person') }}">
                             </div>
                         </div>
-                        @endif
-                        @if (!empty($programmes))
                         <div class="col-md-10">
                             <div class="form-group">
-                            <h5>Programme</h5>
-                            <p>Kindly select the programme this project belongs too.</p>
-                                <select class="js-example-basic-multiple col-md-6" name="programme_id">
-                                    @foreach ($programmes as $programme)
-                                        <option value="{{ $programme->id }}">{{ $programme->title }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        @endif
-                        <div class="col-md-10">
-                            <div class="form-group">
-                                <label class="form-label" for="objective">Objective</label>
-                                <textarea class="form-control @error('objective') is-invalid @enderror"  @error('title')
-                                aria-invalid="true" @enderror name="objective" id="objective"
-                                placeholder="Project Objective">{{ old('objective') }}</textarea>
+                                <label class="form-label" for="contact-details">Contact Details</label>
+                                <input id="contact-details" type="text" class="form-control @error('contact_details') is-invalid @enderror"  @error('contact_details') aria-invalid="true" @enderror
+                                    name="contact_details" required placeholder="Contact details" value="{{ old('contact_details') }}">
                             </div>
                         </div>
                     </div>

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Partner;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PartnerFactory extends Factory
@@ -25,6 +26,7 @@ class PartnerFactory extends Factory
             'title' => $this->faker->jobTitle,
             'contact_person' => $this->faker->title.' '.$this->faker->firstName(). ' ' . $this->faker->lastName(),
             'contact_details' => $this->faker->email.' '.$this->faker->phoneNumber,
+            'user_id' =>  User::all()->random()->id,
         ];
     }
 }
