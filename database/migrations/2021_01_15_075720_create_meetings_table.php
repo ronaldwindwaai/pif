@@ -25,10 +25,20 @@ class CreateMeetingsTable extends Migration
             $table->text('date');
             $table->time('start_time');
             $table->time('end_time')->nullable();
+            $table->date('participants_arrival_date')->nullable();
+            $table->date('secretariat_arrival_date')->nullable();
+            $table->date('participants_departure_date')->nullable();
+            $table->date('secretariat_departure_date')->nullable();
             $table->text('description');
             $table->boolean('is_breakout_room_required')->default(false);
             $table->boolean('is_recording_required')->default(false);
             $table->boolean('is_attendance_report_required')->default(false);
+            $table->boolean('is_members_airfare_required')->default(false);
+            $table->boolean('is_secretariat_airfare_required')->default(false);
+            $table->string('proposed_funding')->nullable();
+            $table->string('venue')->nullable();
+            $table->string('perdiem_rate')->nullable();
+            $table->string('num_of_participants')->nullable();
             $table->string('venue')->nullable();
             $table->enum('status',[
                 'pending',

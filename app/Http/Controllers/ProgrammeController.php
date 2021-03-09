@@ -59,7 +59,8 @@ class ProgrammeController extends Controller
     {
         try {
             $title = 'Add a Programme';
-            $managers = Role::where('name', 'manager')->first()->users()->get();
+            $managers = Role::whereIn('name', ['manager', 'Secretary General'])
+                                ->first()->users()->get();
 
             return view('pages.programme.add')
                 ->with('page', $this->page)

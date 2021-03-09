@@ -4,16 +4,16 @@ $(document).ready(function() {
 	  $('input[name="daterange"]').daterangepicker({
 		opens: 'left'
 	  }, function(start, end, label) {
-		
+
 	  });
 	});
 	$(function() {
-	  $('input[name="datetimes"]').daterangepicker({
+	  $('.datetimes').daterangepicker({
 		timePicker: true,
 		startDate: moment().startOf('hour'),
 		endDate: moment().startOf('hour').add(32, 'hour'),
 		locale: {
-		  format: 'M/DD hh:mm A'
+		  format: 'DD/MM/Y hh:mm A'
 		}
 	  });
 	});
@@ -54,18 +54,18 @@ $(document).ready(function() {
 
 	});
 	$(function() {
-	  $('input[name="datefilter"]').daterangepicker({
+	  $('.daterange').daterangepicker({
 		  autoUpdateInput: false,
 		  locale: {
 			  cancelLabel: 'Clear'
 		  }
 	  });
 
-	  $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+	  $('.daterange').on('apply.daterangepicker', function(ev, picker) {
 		  $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
 	  });
 
-	  $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+	  $('.daterange').on('cancel.daterangepicker', function(ev, picker) {
 		  $(this).val('');
 	  });
 

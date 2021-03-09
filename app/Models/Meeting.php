@@ -15,8 +15,19 @@ class Meeting extends Model
         'date',
         'start_time',
         'end_time',
+        'participants_arrival_date',
+        'secretariat_arrival_date',
+        'participants_departure_date',
+        'secretariat_departure_date',
         'description',
-        'budget',
+        'is_breakout_room_required',
+        'is_recording_required',
+        'is_attendance_report_required',
+        'is_members_airfare_required',
+        'is_secretariat_airfare_required',
+        'proposed_funding',
+        'perdiem_rate',
+        'num_of_participants',
         'venue',
         'status',
     ];
@@ -24,7 +35,7 @@ class Meeting extends Model
     private $columns = [
         'title',
         'meeting_dates',
-        'added_by',
+        'project_name',
         'status',
     ];
 

@@ -8,6 +8,7 @@ use App\Models\Partner;
 use App\Models\Programme;
 use App\Models\Project;
 use App\Models\Resource;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,13 +35,11 @@ class MeetingController extends Controller
 
             $title = 'List of Meetings';
             $meetings = DB::table('meetings')
-                ->join('users', 'meetings.user_id', '=', 'users.id')
-                ->select('meetings.id', 'meetings.title','meetings.date as meeting_dates','users.name as added_by', 'meetings.status')
+                ->join('projects', 'meetings.project_id','=','projects.id')
+                ->select('meetings.id', 'meetings.title','meetings.date as meeting_dates','projects.title as project_name', 'meetings.status')
                 ->get();
 
             $columns    =   $this->meeting->get_columns();
-
-
 
             return view('pages.meeting.index')
                 ->with('data', $meetings)
@@ -69,6 +68,7 @@ class MeetingController extends Controller
             $programmes = Programme::all();
             $projects = Project::all();
             $partners = Partner::all();
+            $users = User::all();
 
             return view('pages.meeting.add')
                 ->with('page', $this->page)
@@ -76,6 +76,7 @@ class MeetingController extends Controller
                 ->with('programmes', $programmes)
                 ->with('projects', $projects)
                 ->with('partners', $partners)
+                ->with('users',$users)
                 ->with('title', $title);
 
         } catch (Exception $exception) {
@@ -96,6 +97,8 @@ class MeetingController extends Controller
         try {
 
             $validated = $request->validated();
+
+            dd($validated);
 
             $meeting = new Meeting($validated);
             $meeting->user_id = Auth::user()->id;
