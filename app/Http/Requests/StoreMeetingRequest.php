@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreMeetingRequest extends FormRequest
 {
@@ -26,7 +27,8 @@ class StoreMeetingRequest extends FormRequest
         return [
             'title'=> 'required',
             'type_of_meeting' => 'required',
-            'date' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
             'start_time' => 'required',
             'end_time' => 'required',
             'participants_arrival_date' => '',
@@ -44,6 +46,27 @@ class StoreMeetingRequest extends FormRequest
             'num_of_participants'  => '',
             'venue'  => '',
             'status'  => '',
+            'file_id' =>'',
+            'user_id' =>'',
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $dates = \explode(' ', $this->dates);
+
+        if(\is_array($dates)){
+            $this->merge([
+                'start_date' => $dates[0],
+                'end_date'  => $dates[4],
+                'start_time' => $dates[1],
+                'end_time' => $dates[5],
+            ]);
+        }
     }
 }

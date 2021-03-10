@@ -32,8 +32,6 @@ class MeetingFactory extends Factory
         $ending_time   = $this->faker->dateTimeBetween($starting_time, strtotime('+6 days'));
 
 
-        $dates = $starting_time->format('d/m/Y').'=>'. $ending_time->format('d/m/Y');
-
         return [
             'title' => $this->faker->title,
             'type_of_meeting' => $this->faker->randomElement([
@@ -42,7 +40,8 @@ class MeetingFactory extends Factory
                 'Weekly',
                 'Monthly',
             ]),
-            'date' => $dates,
+            'start_date' => $starting_time,
+            'end_date' => $ending_time,
             'start_time' => $starting_time->format('H:m:s'),
             'end_time' => $ending_time->format('H:m:s'),
             'description' =>  $this->faker->realText(),

@@ -22,14 +22,15 @@ class CreateMeetingsTable extends Migration
                 'Weekly',
                 'Monthly',
             ]);
-            $table->text('date');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->time('start_time');
-            $table->time('end_time')->nullable();
+            $table->time('end_time');
             $table->date('participants_arrival_date')->nullable();
             $table->date('secretariat_arrival_date')->nullable();
             $table->date('participants_departure_date')->nullable();
             $table->date('secretariat_departure_date')->nullable();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->boolean('is_breakout_room_required')->default(false);
             $table->boolean('is_recording_required')->default(false);
             $table->boolean('is_attendance_report_required')->default(false);
@@ -39,7 +40,6 @@ class CreateMeetingsTable extends Migration
             $table->string('venue')->nullable();
             $table->string('perdiem_rate')->nullable();
             $table->string('num_of_participants')->nullable();
-            $table->string('venue')->nullable();
             $table->enum('status',[
                 'pending',
                 'completed',
@@ -56,6 +56,7 @@ class CreateMeetingsTable extends Migration
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
             $table->foreignId('programme_id')
+                    ->nullable()
                     ->constrained('programmes')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');

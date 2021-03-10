@@ -34,9 +34,10 @@ class MeetingController extends Controller
         try {
 
             $title = 'List of Meetings';
+
             $meetings = DB::table('meetings')
                 ->join('projects', 'meetings.project_id','=','projects.id')
-                ->select('meetings.id', 'meetings.title','meetings.date as meeting_dates','projects.title as project_name', 'meetings.status')
+                ->select('meetings.id', 'meetings.title', 'meetings.start_date','projects.title as project_name', 'meetings.status')
                 ->get();
 
             $columns    =   $this->meeting->get_columns();
@@ -98,15 +99,19 @@ class MeetingController extends Controller
 
             $validated = $request->validated();
 
-            dd($validated);
-
             $meeting = new Meeting($validated);
+
+            $meeting->programme_id = $request->input('programme_id');
+            $meeting->project_id = $request->input('project_id');
+            $meeting->partner_id = $request->input('partner_id');
             $meeting->user_id = Auth::user()->id;
             $meeting->save();
+            $meeting->resources()->attach($request->resource_id);
 
             return \redirect()
-                ->route('meeting.index')->withStatus('The  (' . strtoupper($meeting->title) . ') Meeting was successfully created..');
+                ->route('meetings.index')->withStatus('The  (' . strtoupper($meeting->title) . ') Meeting was successfully created..');
         } catch (Exception $exception) {
+            dd($exception);
             return \redirect()
                 ->back()
                 ->withErrors($exception->getMessage());
@@ -125,7 +130,7 @@ class MeetingController extends Controller
             $meeting = DB::table('meetings')
             ->join('users', 'meetings.user_id', '=', 'users.id')
             ->where('meetings.id', $meeting->id)
-                ->select('meetings.id', 'meetings.title', 'meetings.date as meeting_dates', 'users.name as added_by', 'meetings.status')
+                ->select('meetings.id', 'meetings.title', 'meetings.start_date', 'users.name as added_by', 'meetings.status')
                 ->first();
 
             $title = $meeting->title;

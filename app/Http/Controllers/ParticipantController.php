@@ -90,6 +90,7 @@ class ParticipantController extends Controller
             return \redirect()
                 ->route('participant.index')->withStatus('The  (' . strtoupper($participant->title) . ') Participant was successfully created..');
         } catch (Exception $exception) {
+
             return \redirect()
                 ->back()
                 ->withErrors($exception->getMessage());

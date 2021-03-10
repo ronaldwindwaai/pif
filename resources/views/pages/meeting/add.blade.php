@@ -87,7 +87,7 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 <label class="form-label" for="dates">Date(s)</label>
-                                <input type="text" id="dates" name="date" class="form-control datetimes" required>
+                                <input type="text" id="dates" name="dates" class="form-control datetimes" required>
                             </div>
                         </div>
                         <div class="col-md-7">
@@ -109,7 +109,7 @@
                             <div class="form-group">
                             <h5>Resources</h5>
                             <p>Kindly select the resources this meeting will require.</p>
-                                <select class="js-example-basic-multiple col-md-6 multiple" multiple="multiple" name="programme_id">
+                                <select class="js-example-basic-multiple col-md-6 multiple" multiple="multiple" name="resource_id">
                                     @foreach ($resources as $resource)
                                         <option value="{{ $resource->id }}">{{ $resource->title }}</option>
                                     @endforeach

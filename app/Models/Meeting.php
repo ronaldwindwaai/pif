@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Meeting extends Model
 {
@@ -12,7 +13,8 @@ class Meeting extends Model
     protected $fillable =   [
         'title',
         'type_of_meeting',
-        'date',
+        'start_date',
+        'end_date',
         'start_time',
         'end_time',
         'participants_arrival_date',
@@ -34,11 +36,13 @@ class Meeting extends Model
 
     private $columns = [
         'title',
-        'meeting_dates',
+        'start_date',
         'project_name',
         'status',
     ];
-
+    protected $casts = [
+        'start_date' => 'date:d-m-Y',
+    ];
     public function get_columns()
     {
         return $this->columns;
@@ -82,4 +86,21 @@ class Meeting extends Model
     {
         $this->attributes['status'] = ucwords($value);
     }
+
+    public function setStartDateAttribute($value)
+    {
+        $this->attributes['start_date'] =  Carbon::createFromFormat('d/m/Y', $value)->format('Y/m/d');
+    }
+
+    public function setEndDateAttribute($value)
+    {
+        $this->attributes['end_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y/m/d');
+    }
+
+    public function getStartDateAttribute($value)
+    {
+        return Carbon::createFromFormat('Y-m-d',$value)->format('d/m/Y');
+    }
+
+
 }
