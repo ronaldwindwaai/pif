@@ -31,10 +31,10 @@ class StoreMeetingRequest extends FormRequest
             'end_date' => 'required',
             'start_time' => 'required',
             'end_time' => 'required',
-            'participants_arrival_date' => '',
-            'secretariat_arrival_date'  => '',
-            'participants_departure_date'  => '',
-            'secretariat_departure_date'  => '',
+            'participants_arrival_date' => 'sometimes|required',
+            'secretariat_arrival_date'  => 'sometimes|required',
+            'participants_departure_date'  => 'sometimes|required',
+            'secretariat_departure_date'  => 'sometimes|required',
             'description'  => '',
             'is_breakout_room_required'  => '',
             'is_recording_required'  => '',
@@ -58,7 +58,10 @@ class StoreMeetingRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
-        $dates = \explode(' ', $this->dates);
+
+        $dates = $this->get_dates_array($this->dates);
+        $participant_dates = $this->get_dates_array($this->participant_dates);
+        $secretariat_dates = $this->get_dates_array($this->secretariat_dates);
 
         if(\is_array($dates)){
             $this->merge([
@@ -66,7 +69,16 @@ class StoreMeetingRequest extends FormRequest
                 'end_date'  => $dates[4],
                 'start_time' => $dates[1],
                 'end_time' => $dates[5],
+                'participants_arrival_date' => $participant_dates[0],
+                'secretariat_arrival_date'  => $secretariat_dates[0],
+                'participants_departure_date'  => $participant_dates[2],
+                'secretariat_departure_date'  => $secretariat_dates[2],
             ]);
         }
+    }
+
+    private function get_dates_array($dates)
+    {
+        return \explode(' ', $dates);
     }
 }

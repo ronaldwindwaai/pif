@@ -128,9 +128,9 @@ class MeetingController extends Controller
     {
         try {
             $meeting = DB::table('meetings')
-            ->join('users', 'meetings.user_id', '=', 'users.id')
-            ->where('meetings.id', $meeting->id)
-                ->select('meetings.id', 'meetings.title', 'meetings.start_date', 'users.name as added_by', 'meetings.status')
+                ->join('projects', 'meetings.project_id', '=', 'projects.id')
+                ->where('meetings.id', $meeting->id)
+                ->select('meetings.id', 'meetings.title', 'meetings.start_date','projects.title as project_name', 'meetings.status')
                 ->first();
 
             $title = $meeting->title;

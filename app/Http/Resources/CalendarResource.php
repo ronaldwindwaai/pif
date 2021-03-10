@@ -65,14 +65,14 @@ class CalendarResource extends JsonResource
 
         }
         return [
-            'id'            => $this->project->id,
-            'title'         => $this->title.' Start time:'.$this->start_time,
-            'start'         => Carbon::createFromFormat('d/m/Y', $date[0])->format('Y-m-d'),
-            'end'           => Carbon::createFromFormat('d/m/Y', $date[1])->format('Y-m-d'),
-            'borderColor'   => $border_colour,
-            'backgroundColor' => $backgound_colour,
-            'textColor'     => $text_colour,
-            'url'           => \route('meetings.show',$this->id),
+            'id'                => $this->project->id,
+            'title'             => $this->title.' Start time:'.$this->start_time,
+            'start'             => $this->start_date,
+            'end'               => $this->end_date,
+            'borderColor'       => $border_colour,
+            'backgroundColor'   => $backgound_colour,
+            'textColor'         => $text_colour,
+            'url'               => \route('meetings.show',$this->id),
         ];
     }
 }
