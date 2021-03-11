@@ -16,17 +16,14 @@ class CreateRecordingsTable extends Migration
         Schema::create('recordings', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->longText('credentials')->nullable();
+            $table->text('credentials')->nullable();
+            $table->longText('url_recording');
             $table->foreignId('user_id')
                     ->constrained('users')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
             $table->foreignId('meeting_id')
                     ->constrained('meetings')
-                    ->onUpdate('cascade')
-                    ->onDelete('cascade');
-            $table->foreignId('file_id')
-                    ->constrained('files')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
             $table->timestamps();

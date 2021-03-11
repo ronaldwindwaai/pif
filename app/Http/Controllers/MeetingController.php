@@ -11,8 +11,10 @@ use App\Models\Resource;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification as NotificationsNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Notification;
 
 class MeetingController extends Controller
 {
@@ -107,6 +109,9 @@ class MeetingController extends Controller
             $meeting->user_id = Auth::user()->id;
             $meeting->save();
             $meeting->resources()->attach($request->resource_id);
+
+            //NotificationsNotification::send($data, new BillingNotification($billData));
+
 
             return \redirect()
                 ->route('meetings.index')->withStatus('The  (' . strtoupper($meeting->title) . ') Meeting was successfully created..');

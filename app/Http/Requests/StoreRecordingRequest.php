@@ -26,7 +26,7 @@ class StoreRecordingRequest extends FormRequest
         return [
             'title' => 'required',
             'url_recording' => 'required',
-            'credentials' => 'required',
+            'credentials' => '',
             'url_recording' => 'required|url',
             'meeting_id' => 'required',
         ];

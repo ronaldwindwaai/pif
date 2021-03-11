@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRecordingRequest;
 use App\Http\Requests\StoreResourceRequest;
+use App\Models\File;
 use App\Models\Meeting;
 use App\Models\Recording;
 use Exception;
@@ -81,9 +82,11 @@ class RecordingController extends Controller
             $recording->meeting_id = $request->meeting_id;
             $recording->save();
 
+
             return \redirect()
                 ->route('recordings.index')->withStatus('The  (' . strtoupper($recording->title) . ') Recording was successfully created..');
         } catch (Exception $exception) {
+            dd($exception);
             return \redirect()
                 ->back()
                 ->withErrors($exception->getMessage());
