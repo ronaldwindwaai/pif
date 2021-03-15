@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserCreated;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
@@ -106,6 +107,8 @@ class UserController extends Controller
             $user->save();
             $role = Role::where('id', $validated['role_id'])->get();
             $user->assignRole($role);
+
+            event(new UserCreated($user));
 
             return \redirect()
                 ->route('users.index')->withStatus('The  (' . strtoupper($user->name) . ') User was successfully created..');

@@ -50,7 +50,7 @@ class MeetingController extends Controller
                 ->with('title', $title);
 
         } catch (Exception $exception) {
-            dd($exception);
+
             return \redirect()
                 ->back()
                 ->withErrors($exception->getMessage());

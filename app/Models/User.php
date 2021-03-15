@@ -10,7 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, HasRoles;
 
@@ -48,6 +48,8 @@ class User extends Authenticatable
     {
         return $this->columns;
     }
+
+
     public function programme()
     {
         return $this->hasMany(Programme::class);
