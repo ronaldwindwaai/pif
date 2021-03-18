@@ -99,22 +99,30 @@ class Meeting extends Model
 
     public function setParticipantsArrivalDateAttribute($value)
     {
-        $this->attributes['participants_arrival_date'] =  Carbon::createFromFormat('d/m/Y', $value)->format('Y/m/d');
+        if(!empty($value)){
+            $this->attributes['participants_arrival_date'] =  Carbon::createFromFormat('d/m/Y', $value)->format('Y/m/d');
+        }
     }
 
     public function setSecretariatArrivalDateAttribute($value)
     {
-        $this->attributes['secretariat_arrival_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y/m/d');
+        if (!empty($value)) {
+            $this->attributes['secretariat_arrival_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y/m/d');
+        }
     }
 
     public function setParticipantsDepartureDateAttribute($value)
     {
-        $this->attributes['participants_departure_date'] =  Carbon::createFromFormat('d/m/Y', $value)->format('Y/m/d');
+        if (!empty($value)) {
+            $this->attributes['participants_departure_date'] =  Carbon::createFromFormat('d/m/Y', $value)->format('Y/m/d');
+        }
     }
 
     public function setSecretariatDepartureDateAttribute($value)
     {
-        $this->attributes['secretariat_departure_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y/m/d');
+        if (!empty($value)) {
+            $this->attributes['secretariat_departure_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y/m/d');
+        }
     }
     public function getStartDateAttribute($value)
     {

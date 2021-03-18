@@ -19,6 +19,7 @@ class MeetingNotification extends Notification
      */
     public function __construct($meeting)
     {
+        dd($meeting);
         $this->meeting = $meeting;
     }
 
@@ -56,7 +57,8 @@ class MeetingNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'meeting_id' => $this->billData['id']
+            'meeting_id' => $this->meeting['id'],
+            'title' => $this->meeting['title'],
         ];
     }
 }
