@@ -36,7 +36,7 @@
                             <div class="form-group">
                                 <label class="form-label" for="title">Title</label>
                                 <input id="title" type="text" class="form-control @error('title') is-invalid @enderror"  @error('title') aria-invalid="true" @enderror
-                                    name="title" required placeholder="Name of the Meeting" value="{{ old('title') }}">
+                                    name="title" required placeholder="Name of the Meeting" value="{{ $data->title }}">
                             </div>
                         </div>
                         <div class="col-md-10">

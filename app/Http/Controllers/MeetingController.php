@@ -25,6 +25,8 @@ class MeetingController extends Controller
     {
         $this->meeting  = new Meeting();
         $this->page     = 'meetings';
+
+        $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'delete']]);
     }
     /**
      * Display a listing of the resource.

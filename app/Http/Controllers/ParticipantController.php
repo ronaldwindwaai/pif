@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreParticipantRequest;
+use App\Models\Meeting;
 use App\Models\Participant;
 use Exception;
 use Illuminate\Http\Request;
@@ -61,9 +62,13 @@ class ParticipantController extends Controller
         try {
             $title = 'Add a Participant';
 
+            $meetings = Meeting::all();
+
             return view('pages.participant.add')
-            ->with('page', $this->page)
+                ->with('page', $this->page)
+                ->with('meetings', $meetings)
                 ->with('title', $title);
+
         } catch (Exception $exception) {
             return \redirect()
                 ->back()
@@ -88,7 +93,7 @@ class ParticipantController extends Controller
             $participant->save();
 
             return \redirect()
-                ->route('participant.index')->withStatus('The  (' . strtoupper($participant->title) . ') Participant was successfully created..');
+                ->route('participants.index')->withStatus('The  (' . strtoupper($participant->title) . ') Participant was successfully created..');
         } catch (Exception $exception) {
 
             return \redirect()
@@ -188,7 +193,7 @@ class ParticipantController extends Controller
             $participant->delete();
 
             return \redirect()
-                ->route('particiapants.index')
+                ->route('participants.index')
                 ->withStatus('Successfully deleted the (' . strtoupper($title) . ') Participant');
         } catch (Exception $exception) {
             dd($exception);
