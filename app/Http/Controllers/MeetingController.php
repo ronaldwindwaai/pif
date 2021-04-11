@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMeetingRequest;
+use App\Http\Requests\UpdateMeetingRequest;
 use App\Models\Meeting;
 use App\Models\Partner;
 use App\Models\Programme;
@@ -26,7 +27,7 @@ class MeetingController extends Controller
         $this->meeting  = new Meeting();
         $this->page     = 'meetings';
 
-        $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'delete']]);
+        $this->middleware('restrictedToWorkingHours', ['only' => ['create', 'store', 'edit', 'delete']]);
     }
     /**
      * Display a listing of the resource.
@@ -188,13 +189,18 @@ class MeetingController extends Controller
      * @param  \App\Models\Meeting  $meeting
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreMeetingRequest $request, Meeting $meeting)
+    public function update(UpdateMeetingRequest $request, Meeting $meeting)
     {
         try {
             $validated = $request->validated();
+
             $meeting->fill($validated);
+            $meeting->programme_id = $request->input('programme_id');
+            $meeting->project_id = $request->input('project_id');
+            $meeting->partner_id = $request->input('partner_id');
             $meeting->user_id = Auth::user()->id;
             $meeting->save();
+            $meeting->resources()->attach($request->resource_id);
 
             return \redirect()
                 ->route('meetings.index')->withStatus('The  (' . strtoupper($meeting->title) . ') Meeting was successfully updated..');

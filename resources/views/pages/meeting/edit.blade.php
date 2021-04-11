@@ -4,6 +4,7 @@
 @endsection
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/css/plugins/select2.min.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/css/plugins/daterangepicker.css')}}">
 @endsection
 @section('js')
 <!-- jquery-validation Js -->
@@ -14,6 +15,10 @@
 <script src="{{ asset('assets/js/plugins/select2.full.min.js')}}"></script>
 <!-- form-select-custom Js -->
 <script src="{{ asset('assets/js/pages/form-select-custom.js')}}"></script>
+
+<script src="{{ asset('assets/js/plugins/moment.min.js')}}"></script>
+<script src="{{ asset('assets/js/plugins/daterangepicker.js')}}"></script>
+<script src="{{ asset('assets/js/pages/ac-datepicker.js')}}"></script>
 
 @include('shared.message.error-reporting')
 
@@ -72,7 +77,7 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 <label class="form-label" for="dates">Date(s)</label>
-                                <input type="text" id="dates" name="dates" class="form-control datetimes" required>
+                                <input type="text" id="dates" name="dates" class="form-control datetimes" required value="{{ $data->start_date.' - '.$data->end_date }}">
                             </div>
                         </div>
                         <div class="col-md-7">
@@ -96,7 +101,7 @@
                             <p>Kindly select the resources this meeting will require.</p>
                                 <select class="js-example-basic-multiple col-md-6 multiple" multiple="multiple" name="resource_id">
                                     @foreach ($resources as $resource)
-                                        <option value="{{ $resource->id }}">{{ $resource->title }}</option>
+                                        <option value="{{ $resource->id }}" {{ ($data->resource_id == $resource->id)?'selected' :'' }} >{{ $resource->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
