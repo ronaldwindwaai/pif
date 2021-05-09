@@ -21,13 +21,18 @@ class CreateParticipantsTable extends Migration
             $table->dateTime('registration_date');
             $table->string('country_code');
             $table->string('country');
-            $table->string('phone');
+            $table->string('tel')->nullable();
             $table->string('organization');
-            $table->string('job_title');
+            $table->string('job_title')->nullable();
             $table->foreignId('meeting_id')
                     ->constrained('meetings')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreignId('file_id')
                     ->nullable()
                     ->constrained('files')

@@ -43,9 +43,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('supports', SupportController::class);
     Route::resource('meetings', MeetingController::class);
     Route::resource('recordings', RecordingController::class);
+    Route::get('participants/search/add', [ParticipantController::class, 'search'])->name('participants.search');
+    Route::get('participants/load', [ParticipantController::class, 'load'])->name('participants.load');
+    Route::post('participants/upload', [ParticipantController::class, 'upload'])->name('participants.upload');
     Route::resource('participants', ParticipantController::class);
-    Route::get('participants/load', [App\Http\Controllers\ParticipantController::class, 'load'])->name('participants.load');
-    Route::post('participants/upload', [App\Http\Controllers\ParticipantController::class, 'upload'])->name('participants.upload');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('partners', PartnerController::class);

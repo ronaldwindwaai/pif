@@ -29,11 +29,11 @@ class StoreParticipantRequest extends FormRequest
             'last_name' => 'required',
             'email' => 'required|email',
             'registration_date' => 'required|date',
-            'country_code' => 'required',
             'country' => 'required',
-            'phone',
+            'meeting_id' => 'required',
+            'tel' => '',
             'organization' => 'required',
-            'job_title',
+            'job_title' => '',
         ];
     }
 }

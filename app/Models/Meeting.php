@@ -87,15 +87,6 @@ class Meeting extends Model
         $this->attributes['status'] = ucwords($value);
     }
 
-    public function setStartDateAttribute($value)
-    {
-        $this->attributes['start_date'] =  Carbon::createFromFormat('d/m/Y', $value)->format('Y/m/d');
-    }
-
-    public function setEndDateAttribute($value)
-    {
-        $this->attributes['end_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y/m/d');
-    }
 
     public function setParticipantsArrivalDateAttribute($value)
     {

@@ -28,6 +28,7 @@ class RecordingFactory extends Factory
         return [
             'title' => $file->title,
             'credentials' => $this->faker->text,
+            'url_recording' => $this->faker->url,
             'user_id'   =>  User::all()->random()->id,
             'meeting_id'   =>  Meeting::all()->random()->id,
             'file_id' => $file->id,

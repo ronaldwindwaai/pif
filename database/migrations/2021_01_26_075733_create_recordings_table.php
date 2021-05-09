@@ -26,6 +26,10 @@ class CreateRecordingsTable extends Migration
                     ->constrained('meetings')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
+            $table->foreignId('file_id')
+                    ->constrained('files')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }

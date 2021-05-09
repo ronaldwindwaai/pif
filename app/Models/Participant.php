@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Participant extends Model
 {
@@ -16,7 +17,7 @@ class Participant extends Model
         'registration_date',
         'country_code',
         'country',
-        'phone',
+        'tel',
         'organization',
         'job_title',
         'meeting_id',
@@ -44,4 +45,17 @@ class Participant extends Model
     {
         return $this->hasMany(File::class);
     }
+
+    public function setRegistrationDateAttribute($value)
+    {
+        if (!empty($value)) {
+            $this->attributes['registration_date'] =  Carbon::createFromFormat('d/m/Y', $value)->format('Y/m/d');
+        }
+    }
+
+    public function getRegistrationDateAttribute($value)
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s.u', $value);
+    }
+
 }

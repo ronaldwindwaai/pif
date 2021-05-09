@@ -29,7 +29,7 @@ class ParticipantFactory extends Factory
             'registration_date' => $this->faker->dateTimeThisYear('-1 month'),
             'country_code' => $this->faker->countryCode,
             'country' => $this->faker->country,
-            'phone' => $this->faker->phoneNumber,
+            'tel' => $this->faker->phoneNumber,
             'organization' => $this->faker->title(),
             'job_title' => $this->faker->jobTitle,
             'meeting_id'   =>  Meeting::all()->random()->id,
