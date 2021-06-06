@@ -18,9 +18,9 @@
 @endsection
 @section('content')
 @include('partial.user_table',[
-    'title' =>  $title,
-    'data'  =>  $data,
-    'form' => 'User',
-    'page' => 'users',
+    'title'     =>  $title,
+    'data'      =>  $data,
+    'form'      => 'users',
+    'page'      => 'users',
 ])
 @endsection

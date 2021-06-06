@@ -11,7 +11,7 @@ class Meeting extends Model
     use HasFactory;
 
     protected $fillable =   [
-        'title',
+        'name_of_the_meeting',
         'type_of_meeting',
         'start_date',
         'end_date',
@@ -35,7 +35,7 @@ class Meeting extends Model
     ];
 
     private $columns = [
-        'title',
+        'name_of_the_meeting',
         'start_date',
         'project_name',
         'status',

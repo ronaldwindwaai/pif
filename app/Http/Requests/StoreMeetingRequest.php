@@ -25,7 +25,7 @@ class StoreMeetingRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=> 'required',
+            'name_of_the_meeting'=> 'required',
             'type_of_meeting' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',

@@ -29,7 +29,7 @@ class ProgrammeController extends Controller
     {
         try {
 
-            $title = 'List of Programmes';
+            $title = __('admin/programme/table.table_title');
             $programmes = DB::table('programmes')
                         ->join('users', 'programmes.manager_id', '=', 'users.id')
                         ->select('programmes.id', 'programmes.title','users.name as manager', 'programmes.created_at')
@@ -38,9 +38,9 @@ class ProgrammeController extends Controller
             $columns    =   $this->programme->get_columns();
 
             return view('pages.programme.index')
-            ->with('data', $programmes)
-            ->with('columns', $columns)
-            ->with('title', $title);
+                    ->with('data', $programmes)
+                    ->with('columns', $columns)
+                    ->with('title', $title);
 
         } catch (Exception $exception) {
             dd($exception);
@@ -58,7 +58,7 @@ class ProgrammeController extends Controller
     public function create()
     {
         try {
-            $title = 'Add a Programme';
+            $title = __('admin/programme/form.form_title');
             $managers = Role::whereIn('name', ['manager', 'Secretary General'])
                                 ->first()->users()->get();
 

@@ -33,7 +33,7 @@ class MeetingFactory extends Factory
 
 
         return [
-            'title' => $this->faker->title,
+            'name_of_the_meeting' => $this->faker->name,
             'type_of_meeting' => $this->faker->randomElement([
                 'Single Day',
                 'Specific Days',

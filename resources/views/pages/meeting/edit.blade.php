@@ -39,9 +39,9 @@
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
-                                <label class="form-label" for="title">Title</label>
-                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror"  @error('title') aria-invalid="true" @enderror
-                                    name="title" required placeholder="Name of the Meeting" value="{{ $data->title }}">
+                                <label class="form-label" for="name-of-the-meeting">Name of the Meeting</label>
+                                <input id="name-of-the-meeting" type="text" class="form-control @error('name_of_the_meeting') is-invalid @enderror"  @error('title') aria-invalid="true" @enderror
+                                    name="name_of_the_meeting" required placeholder="Name of the Meeting" value="{{ $data->name_of_the_meeting }}">
                             </div>
                         </div>
                         <div class="col-md-10">

@@ -12,7 +12,7 @@ Dashboard
                 <div class="card support-bar overflow-hidden">
                     <div class="card-body pb-0">
                         <h2 class="m-0">{{ $meetings }}</h2>
-                        <span class="text-c-blue">Meetings</span>
+                        <span class="text-c-blue">{{ __('admin/menu.general.dashboard.meetings.title') }}</span>
                         <p class="mb-3 mt-3">Total number of meetings created.</p>
                     </div>
                     <div id="support-chart"></div>

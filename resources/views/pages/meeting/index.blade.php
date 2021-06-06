@@ -21,7 +21,7 @@
     'title' =>  $title,
     'data'  =>  $data,
     'columns'  =>  $columns,
-    'form' => 'Meeting',
+    'form' => 'meetings',
     'page' => 'meetings',
 ])
 @endsection

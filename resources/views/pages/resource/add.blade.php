@@ -23,7 +23,7 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h5>{{ $title }}</h5>
+                <h5>{{ __('admin/resource/form.form_title') }}</h5>
             </div>
             <div class="card-body">
                 <form id="validation-form123" action="{{ route('resources.store') }}" method="POST"
@@ -32,21 +32,20 @@
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
-                                <label class="form-label" for="title">Title</label>
+                                <label class="form-label" for="title">{{__('admin/resource/form.title')}}</label>
                                 <input id="title" type="text" class="form-control @error('title') is-invalid @enderror"  @error('title') aria-invalid="true" @enderror
-                                    name="title" required placeholder="Name of the Resource" value="{{ old('title') }}">
+                                    name="title" required placeholder="{{ trans('admin/resource/form.place_holder.title') }}" value="{{ old('title') }}">
                             </div>
                         </div>
-
                         <div class="col-md-10">
                             <div class="form-group">
-                                <label class="form-label" for="description">Description</label>
+                                <label class="form-label" for="description">{{ __('admin/resource/form.description') }}</label>
                                 <textarea class="form-control @error('title') is-invalid @enderror"  @error('title') aria-invalid="true" @enderror name="description" id="description"
-                                    placeholder="Resource Description">{{ old('description') }}</textarea>
+                                    placeholder="{{ __('admin/resource/form.place_holder.description') }}">{{ old('description') }}</textarea>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn  btn-primary">Submit</button>
+                    <button type="submit" class="btn  btn-primary">{{ __('admin/form.submit') }}</button>
                 </form>
             </div>
         </div>
