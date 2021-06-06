@@ -15,7 +15,7 @@ class CreateMeetingsTable extends Migration
     {
         Schema::create('meetings', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('name_of_the_meeting');
             $table->enum('type_of_meeting',[
                 'Single Day',
                 'Specific Days',

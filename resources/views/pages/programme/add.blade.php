@@ -32,16 +32,16 @@
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
-                                <label class="form-label" for="title">Title</label>
+                                <label class="form-label" for="title">{{ __('admin/programme/form.title') }}</label>
                                 <input id="title" type="text" class="form-control @error('title') is-invalid @enderror"  @error('title') aria-invalid="true" @enderror
-                                    name="title" required placeholder="Name of the Programme" value="{{ old('title') }}">
+                                    name="title" required placeholder="{{ __('admin/programme/form.place_holder.title') }}" value="{{ old('title') }}">
                             </div>
                         </div>
                         @if (!empty($managers))
                         <div class="col-md-10">
                             <div class="form-group">
-                            <h5>Manager</h5>
-                            <p>Kindly assign the Manager responsible for this Programme.</p>
+                            <h5>{{ __('admin/programme/form.manager') }}</h5>
+                            <p>{{ __('admin/programme/form.place_holder.manager') }}</p>
                                 <select class="js-example-basic-multiple col-md-6" name="manager_id">
                                     @foreach ($managers as $manager)
                                         <option value="{{ $manager->id }}">{{ $manager->name }}</option>
@@ -52,13 +52,13 @@
                         @endif
                         <div class="col-md-10">
                             <div class="form-group">
-                                <label class="form-label" for="description">Description</label>
+                                <label class="form-label" for="description">{{ __('admin/programme/form.description') }}</label>
                                 <textarea class="form-control @error('title') is-invalid @enderror"  @error('description') required aria-invalid="true" @enderror name="description" id="description"
-                                    placeholder="Programme Description">{{ old('description') }}</textarea>
+                                    placeholder="{{ __('admin/programme/form.place_holder.description') }}">{{ old('description') }}</textarea>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn  btn-primary">Submit</button>
+                    <button type="submit" class="btn  btn-primary">{{ __('admin/form.submit') }}</button>
                 </form>
             </div>
         </div>

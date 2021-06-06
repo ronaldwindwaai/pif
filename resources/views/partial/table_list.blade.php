@@ -7,18 +7,15 @@
         <div class="card-body">
             <div class="row align-items-center m-l-0">
                 <div class="col-sm-6">
-
                 </div>
                 <div class="col-sm-6 text-right">
                     <a href="{{ $page.'/create' }}"><button class="btn btn-success btn-sm btn-round has-ripple"
-                            data-toggle="modal" data-target="#modal-report"><i class="feather icon-plus"></i> Add
-                            {{ $form }}</button></a>
+                            data-toggle="modal" data-target="#modal-report"><i class="feather icon-plus"></i> {{ __('admin/menu.navigation.'.strtolower($form).'.add') }}</button></a>
                     <!--<button type="button"id="delete-selected" class="btn btn-danger btn-sm btn-round has-ripple" data-toggle="modal"
                         data-target="#exampleModalLive">Delete Project</button>-->
                 </div>
             </div>
             @if (!empty($data))
-
             <div class="dt-responsive table-responsive">
                 <table id="fix-header" class="table table-striped table-bordered nowrap">
                     @if (!empty($columns))
@@ -26,7 +23,7 @@
                         <tr>
                             <!--<th><a href="javascript:;" class="select-all">Select All</a></th>-->
                             @foreach ($columns as $column)
-                                <th>{{ str_replace('_',' ',$column) }}</th>
+                                <th>{{ strtoupper (__('admin/table.'.$column)) }}</th>
                             @endforeach
                             <th></th>
                         </tr>
@@ -60,7 +57,7 @@
                     <tfoot>
                         <!--<th><a href="javascript:;" class="select-all">SELECT ALL</a></th>-->
                         @foreach ($columns as $column)
-                        <th>{{ strtoupper (str_replace('_',' ',$column)) }}</th>
+                         <th>{{ strtoupper (__('admin/table.'.$column)) }}</th>
                         @endforeach
                         <th></th>
                     </tfoot>

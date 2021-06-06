@@ -34,77 +34,95 @@
                 </li>
                 <li class="nav-item">
                     <a href="/" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                                class="feather icon-home"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.dashboard') }}</span></a>
 
                 </li>
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-align-justify"></i></span><span class="pcoded-mtext">Programmes</span></a>
+                                class="feather icon-align-justify"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.programmes.title') }}</span></a>
                     <ul class="pcoded-submenu">
-                        <li><a href="{{ route('programmes.create') }}">Add A Programme</a></li>
-                        <li><a href="{{ route('programmes.index') }}">List All Programmes</a></li>
+                        <li><a href="{{ route('programmes.create') }}">{{ __('admin/menu.navigation.programmes.add') }}</a></li>
+                        <li><a href="{{ route('programmes.index') }}">{{ __('admin/menu.navigation.programmes.list') }}</a></li>
                     </ul>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-layout"></i></span><span class="pcoded-mtext">Project</span></a>
+                                class="feather icon-layout"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.projects.title') }}</span></a>
                     <ul class="pcoded-submenu">
 
-                        <li><a href="{{ route('projects.create') }}">Add A Project</a></li>
-                        <li><a href="{{ route('projects.index') }}">List All Projects</a></li>
+                        <li><a href="{{ route('projects.create') }}">{{ __('admin/menu.navigation.projects.add') }}</a></li>
+                        <li><a href="{{ route('projects.index') }}">{{ __('admin/menu.navigation.projects.list') }}</a></li>
 
                     </ul>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-briefcase"></i></span><span class="pcoded-mtext">Meetings</span></a>
+                                class="feather icon-briefcase"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.meetings.title') }}</span></a>
                     <ul class="pcoded-submenu">
-                        <li><a href="{{ route('meetings.create') }}">Setup A Meeting</a></li>
-                        <li><a href="{{ route('meetings.index') }}">List All Meetings</a></li>
+                        <li><a href="{{ route('meetings.create') }}">{{ __('admin/menu.navigation.meetings.add') }}</a></li>
+                        <li><a href="{{ route('meetings.index') }}">{{ __('admin/menu.navigation.meetings.list') }}</a></li>
                     </ul>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-at-sign"></i></span><span class="pcoded-mtext">Recordings</span><span
+                                class="feather icon-at-sign"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.recordings.title') }}</span><span
                             class="pcoded-badge badge badge-success">100+</span></a>
                     <ul class="pcoded-submenu">
-                        <li><a href="{{ route('recordings.create') }}">Add A Recordings</a></li>
-                        <li><a href="{{ route('recordings.index') }}">List All Recordings</a></li>
+                        <li><a href="{{ route('recordings.create') }}">{{ __('admin/menu.navigation.recordings.add') }}</a></li>
+                        <li><a href="{{ route('recordings.index') }}">{{ __('admin/menu.navigation.recordings.list') }}</a></li>
                     </ul>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-layers"></i></span><span class="pcoded-mtext">Resources</span></a>
+                                class="feather icon-layers"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.resources.title') }}</span></a>
                     <ul class="pcoded-submenu">
-                        <li><a href="{{ route('resources.create') }}">Add A Resource</a></li>
-                        <li><a href="{{ route('resources.index') }}">List All Resources</a></li>
+                        <li><a href="{{ route('resources.create') }}">{{ __('admin/menu.navigation.resources.add') }}</a></li>
+                        <li><a href="{{ route('resources.index') }}">{{ __('admin/menu.navigation.resources.list') }}</a></li>
                     </ul>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-tablet"></i></span><span class="pcoded-mtext">Participants</span></a>
+                                class="feather icon-tablet"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.participants.title') }}</span></a>
                     <ul class="pcoded-submenu">
-                        <li><a href="{{ route('participants.create') }}">Add New Participants</a></li>
-                        <li><a href="{{ route('participants.load') }}">Load Participants</a></li>
-                        <li><a href="{{ route('participants.index') }}">List All Participants</a></li>
+                        <li><a href="{{ route('participants.create') }}">{{ __('admin/menu.navigation.participants.add') }}</a></li>
+                        <li><a href="{{ route('participants.load') }}">{{ __('admin/menu.navigation.participants.import') }}</a></li>
+                        <li><a href="{{ route('participants.index') }}">{{ __('admin/menu.navigation.participants.list') }}</a></li>
                     </ul>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-tablet"></i></span><span class="pcoded-mtext">Partners</span></a>
+                                class="feather icon-tablet"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.partners.title') }}</span></a>
                     <ul class="pcoded-submenu">
-                        <li><a href="{{ route('partners.create') }}">Add A Partner</a></li>
-                        <li><a href="{{ route('partners.index') }}">List All Partners</a></li>
+                        <li><a href="{{ route('partners.create') }}">{{ __('admin/menu.navigation.partners.add') }}</a></li>
+                        <li><a href="{{ route('partners.index') }}">{{ __('admin/menu.navigation.partners.list') }}</a></li>
                     </ul>
                 </li>
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link"><span class="pcoded-micon"><i
-                                class="feather icon-users"></i></span><span class="pcoded-mtext">Users</span></a>
+                                class="feather icon-users"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.users.title') }}</span></a>
                     <ul class="pcoded-submenu">
-                        <li><a href="{{ route('users.show',Auth::user()->id) }}">Profile</a></li>
-                        <li><a href="{{ route('users.create') }}">Add a User </a></li>
-                        <li><a href="{{ route('users.index') }}">List All Users</a></li>
-                        <li><a href="{{ route('roles.index') }}">List Roles</a></li>
+                        <li><a href="{{ route('users.show',Auth::user()->id) }}">{{ __('admin/menu.navigation.users.profile') }}</a></li>
+                        <li><a href="{{ route('users.create') }}">{{ __('admin/menu.navigation.users.add') }} </a></li>
+                        <li><a href="{{ route('users.index') }}">{{ __('admin/menu.navigation.users.list') }}</a></li>
+                        <li><a href="{{ route('roles.index') }}">{{ __('admin/menu.navigation.users.list_roles') }}</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-global"></i>
+                        </span>
+                        <span class="flag-icon flag-icon-{{Config::get('languages')[App::getLocale()]['flag-icon']}}"></span>
+                        {{ Config::get('languages')[App::getLocale()]['display'] }}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        @foreach (Config::get('languages') as $lang => $language)
+                            @if ($lang != App::getLocale())
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"><span class="flag-icon flag-icon-{{$language['flag-icon']}}"></span> {{$language['display']}}</a>
+                                </li>
+                            @endif
+                        @endforeach
                     </ul>
                 </li>
             </ul>
@@ -113,10 +131,10 @@
                 <div class="card-block">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <i class="feather icon-sunset f-40"></i>
-                    <h6 class="mt-3">Help?</h6>
-                    <p>Please contact us on our email for need any support</p>
+                    <h6 class="mt-3">{{ __('admin/menu.navigation.support.help') }}</h6>
+                    <p>{{ __('admin/menu.navigation.support.contact') }}</p>
                     <a href="{{ route('supports.create') }}" target="_blank"
-                        class="btn btn-primary btn-sm text-white m-0">Support</a>
+                        class="btn btn-primary btn-sm text-white m-0"><i class="flag flag-united-states"></i>{{ __('admin/menu.navigation.support.title') }}</a>
                 </div>
             </div>
 

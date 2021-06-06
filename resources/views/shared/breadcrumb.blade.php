@@ -4,14 +4,15 @@
         <div class="row align-items-center">
             <div class="col-md-12">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">Dashboard</h5>
+                    <?php $route_name = explode('.',Route::currentRouteName());?>
+                    <h5 class="m-b-10">{{ __('admin/breadcrumb.'.$route_name[0]) }}</h5>
                 </div>
                 <ul class="breadcrumb">
                     <?php $link=''; ?>
                     <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
                     @foreach(Request::segments() as $segment)
                         <?php $link = $link.'/'.$segment;?>
-                        <li class="breadcrumb-item"><a href="{{ $link }}">{{ ucwords($segment) }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ $link }}">{{ __('admin/breadcrumb.'.$segment) }}</a></li>
                     @endforeach
                 </ul>
             </div>

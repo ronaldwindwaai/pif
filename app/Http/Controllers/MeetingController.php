@@ -42,7 +42,7 @@ class MeetingController extends Controller
 
             $meetings = DB::table('meetings')
                 ->join('projects', 'meetings.project_id','=','projects.id')
-                ->select('meetings.id', 'meetings.title', 'meetings.start_date','projects.title as project_name', 'meetings.status')
+                ->select('meetings.id', 'meetings.name_of_the_meeting', 'meetings.start_date','projects.title as project_name', 'meetings.status')
                 ->get();
 
             $columns    =   $this->meeting->get_columns();
@@ -76,7 +76,7 @@ class MeetingController extends Controller
             $partners = Partner::all();
             $users = User::all();
 
-            return view('pages.meeting.add')
+            return view('pages.meeting.form-wizard')
                 ->with('page', $this->page)
                 ->with('resources', $resources)
                 ->with('programmes', $programmes)
@@ -138,7 +138,7 @@ class MeetingController extends Controller
             $meeting = DB::table('meetings')
                 ->join('projects', 'meetings.project_id', '=', 'projects.id')
                 ->where('meetings.id', $meeting->id)
-                ->select('meetings.id', 'meetings.title', 'meetings.start_date','projects.title as project_name', 'meetings.status')
+                ->select('meetings.id', 'meetings.name_of_the_meeting', 'meetings.start_date','projects.title as project_name', 'meetings.status')
                 ->first();
 
             $title = $meeting->title;

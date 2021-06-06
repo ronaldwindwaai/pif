@@ -21,7 +21,7 @@
     'title' =>  $title,
     'data'  =>  $data,
     'columns'  =>  $columns,
-    'form' => 'Resources',
+    'form' => 'resources',
     'page' => 'resources',
 ])
 @endsection

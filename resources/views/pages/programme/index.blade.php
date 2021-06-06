@@ -17,11 +17,12 @@
 @include('shared.message.message-reporting')
 @endsection
 @section('content')
+<?php $route_name = explode('.',Route::currentRouteName());?>
 @include('partial.table_list',[
-    'title' =>  $title,
-    'data'  =>  $data,
-    'columns'  =>  $columns,
-    'form' => 'Programme',
-    'page' => 'programmes',
+    'title'     =>  $title,
+    'data'      =>  $data,
+    'columns'   =>  $columns,
+    'form'      =>  'programmes',
+    'page'      =>  'programmes',
 ])
 @endsection
