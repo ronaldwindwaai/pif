@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         CalendarResource::withoutWrapping();
-        // $factory->composer('shared.header', 'App\Http\Views\Composers\NotificationComposer');
+
         view()->composer('shared.header', function ($view) {
             $view->with('notifications', Auth::user()->unreadNotifications);
         });

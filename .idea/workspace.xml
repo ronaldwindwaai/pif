@@ -31,18 +31,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1baf0b50-bf15-4793-8331-43fe31353520" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/pif.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MeetingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MeetingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/TimeBasedRestriction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/TimeBasedRestriction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Meeting.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Meeting.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Participant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Participant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theme/form-wizard.html" beforeDir="false" afterPath="$PROJECT_DIR$/theme/form-wizard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/en/admin/message.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ResourceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ResourceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/admin/recording/message.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/admin/resource/message.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +70,7 @@
       <option name="presentableId" value="Default" />
       <updated>1621838953875</updated>
       <workItem from="1621838955141" duration="252000" />
+      <workItem from="1623054445669" duration="318000" />
     </task>
     <servers />
   </component>
@@ -91,6 +84,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

@@ -53,20 +53,7 @@
                                 </li>
                                 @empty
                                     <li class="n-title">
-                                    <p class="m-b-0">EARLIER</p>
-                                </li>
-                                <li class="notification">
-                                    <div class="media">
-                                        <img class="img-radius" src="{{asset('assets/images/user/profile-picture.png')}}"
-                                            alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <p>{{ ucwords(Auth::user()->name) }}
-                                                <span class="n-time text-muted">
-                                                    <i
-                                                        class="icon feather icon-clock m-r-10"></i>10 min</span></p>
-                                            <p>Prchace New Theme and make payment</p>
-                                        </div>
-                                    </div>
+                                    <p class="m-b-0">All Notifications have been read</p>
                                 </li>
                                 @endforelse
                                 <div class="noti-footer">
@@ -74,8 +61,6 @@
                                 </div>
                             </ul>
                         @endisset
-
-
                     </div>
                 </div>
             </li>

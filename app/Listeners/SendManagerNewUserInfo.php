@@ -2,14 +2,14 @@
 
 namespace App\Listeners;
 
-use App\Models\User;
-use App\Notifications\NewUserNotification;
+use App\Events\NewUserCreated;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Support\Facades\Log;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use App\Notifications\NewUserNotification;
 
-class SendNewUserNotification implements ShouldQueue
+class SendManagerNewUserInfo
 {
     /**
      * Create the event listener.
@@ -24,17 +24,16 @@ class SendNewUserNotification implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param  NewUserCreated  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(NewUserCreated $event)
     {
         $admins = User::whereHas('roles', function ($query) {
             $query->where('name', 'super-admin');
-        })
-        ->get()
+        })->get()
         ->each(function ($admin) use ($event) {
-            $admin->notify(new NewUserNotification($event->user));
+             $admin->notify(new NewUserNotification($event->user));
         });
     }
 }

@@ -83,7 +83,11 @@ class ResourceController extends Controller
             //$request->session()->flash('success', 'Resource was successfully created..');
 
             return \redirect()
-                ->route('resources.index')->withStatus(__('message.success', ['title' => strtoupper($resource->title),'method'=>'created']));
+                ->route('resources.index')->withStatus(__('message.success',
+                    ['title' => strtoupper($resource->title),
+                    'model' => 'Resource',
+                    'method'=>'created']));
+
         } catch (Exception $exception) {
             return \redirect()
                     ->back()
