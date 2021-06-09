@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use App\Events\NewUserCreated;
+
 
 class UserController extends Controller
 {
@@ -40,7 +42,9 @@ class UserController extends Controller
     {
 
         try {
-            $users = User::with('roles')->get();
+            $users = User::with('roles')
+                        -> orderBy('name', 'asc')
+                        ->get();
 
             $title = 'List of Users';
 
@@ -108,7 +112,7 @@ class UserController extends Controller
             $role = Role::where('id', $validated['role_id'])->get();
             $user->assignRole($role);
 
-            event(new UserCreated($user));
+            \event(new NewUserCreated($user));
 
             return \redirect()
                 ->route('users.index')->withStatus('The  (' . strtoupper($user->name) . ') User was successfully created..');

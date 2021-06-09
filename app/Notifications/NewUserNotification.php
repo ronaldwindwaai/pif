@@ -2,15 +2,20 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\support\Facades\Mail;
+use App\Mail\SendNewUserMail;
 
-class NewUserNotification extends Notification
+
+class NewUserNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    public $data;
     private $user;
 
     /**
@@ -18,9 +23,15 @@ class NewUserNotification extends Notification
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct(User $user)
     {
-        $this->user = $user;
+        $this->data['email']    = $user->email;
+        $this->data['name']     = $user->name;
+        $this->data['link']     = route('users.show', $user->id);
+        $this->data['message']  = 'Good Day,<p> The following user account(' . $user->name.')
+                                    has been created.</p><p>Click on the following link to view their
+                                    <a href="'. $this->data['link'].'">profile</a></p>';
+        $this->data['subject']  = 'New User created';
     }
 
     /**
@@ -42,10 +53,9 @@ class NewUserNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return (new MailMessage())
+            ->subject($this->data['subject'])
+            ->line($this->data['message']);
     }
 
     /**
@@ -57,8 +67,10 @@ class NewUserNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'name' => $this->user->name,
-            'email' => $this->user->email,
+            'name'      => $this->data['name'],
+            'email'     => $this->data['email'],
+            'message'   => $this->data['message'],
+            'link'      => $this->data['link'],
         ];
     }
 }
