@@ -37,7 +37,7 @@
                                 class="feather icon-home"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.dashboard') }}</span></a>
 
                 </li>
-                @role('super-admin')
+
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-align-justify"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.programmes.title') }}</span></a>
@@ -46,7 +46,7 @@
                         <li><a href="{{ route('programmes.index') }}">{{ __('admin/menu.navigation.programmes.list') }}</a></li>
                     </ul>
                 </li>
-                @endrole
+                @hasrole('super-admin|admin')
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-layout"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.projects.title') }}</span></a>
@@ -57,6 +57,7 @@
 
                     </ul>
                 </li>
+                @endhasrole
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-briefcase"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.meetings.title') }}</span></a>
@@ -91,6 +92,7 @@
                         <li><a href="{{ route('participants.index') }}">{{ __('admin/menu.navigation.participants.list') }}</a></li>
                     </ul>
                 </li>
+
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-tablet"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.partners.title') }}</span></a>
@@ -99,6 +101,7 @@
                         <li><a href="{{ route('partners.index') }}">{{ __('admin/menu.navigation.partners.list') }}</a></li>
                     </ul>
                 </li>
+                @role('super-admin')
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link"><span class="pcoded-micon"><i
                                 class="feather icon-users"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.users.title') }}</span></a>
@@ -109,6 +112,7 @@
                         <li><a href="{{ route('roles.index') }}">{{ __('admin/menu.navigation.users.list_roles') }}</a></li>
                     </ul>
                 </li>
+                @endrole
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link">
                         <span class="pcoded-micon">

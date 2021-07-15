@@ -18,10 +18,10 @@
 @endsection
 @section('content')
 @include('partial.table_list',[
-    'title' =>  $title,
-    'data'  =>  $data,
-    'columns'  =>  $columns,
-    'form' => 'projects',
-    'page' => 'projects',
+    'title'     =>  $title,
+    'data'      =>  $data,
+    'columns'   =>  $columns,
+    'form'      => 'projects',
+    'page'      => 'projects',
 ])
 @endsection

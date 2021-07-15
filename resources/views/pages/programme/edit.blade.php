@@ -15,7 +15,7 @@
 <!-- form-select-custom Js -->
 <script src="{{ asset('assets/js/pages/form-select-custom.js')}}"></script>
 
-@include('shared.message.error-reporting')
+@include('shared.message.message-reporting')
 @endsection
 @section('content')
 <!-- [ Main Content ] start -->

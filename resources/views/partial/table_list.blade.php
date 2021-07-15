@@ -34,7 +34,7 @@
                         <tr>
                             <!--<td><input type="checkbox" class="checkboxes" name="id[]" value="{{ $row->id }}" /></td>-->
                             @foreach ($columns as $column)
-                            <td>{{ $row->$column }}</td>
+                                <td>{{ $row->$column }}</td>
                             @endforeach
                             <td>
                                 <a href="{{ route($page.'.edit',$row->id) }}" class="btn btn-info btn-sm"><i
@@ -46,7 +46,7 @@
                                     method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="#" onclick="confirm('Are you sure, you want to delete this programme?')?document.getElementById('delete-form{{ $row->id }}').submit():''"
+                                    <a href="#" onclick="confirm('{{ __('admin/table.confirm_delete',['name'=> Str::singular($page) ]) }}')?document.getElementById('delete-form{{ $row->id }}').submit():''"
                                         class="btn btn-danger btn-sm">
                                         <i class="feather icon-trash-2"></i>&nbsp;Delete</a>
                                 </form>

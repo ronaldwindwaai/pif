@@ -58,12 +58,16 @@ class ProjectController extends Controller
     {
         $title = 'Add a Project';
         $programmes = Programme::all();
-        $officers = Role::where('name', 'officer')->first()->users()->get();
+        $roles      = Role::all();
+        $officers   = Role::where('name', 'officer')->first()->users()->get();
+        $managers   = Role::where('name', 'manager')->first()->users()->get();
 
         return view('pages.project.add')
             ->with('page', $this->page)
             ->with('programmes',$programmes)
             ->with('title', $title)
+            ->with('roles', $roles)
+            ->with('managers', $managers)
             ->with('officers',$officers);
     }
 
@@ -137,15 +141,19 @@ class ProjectController extends Controller
     {
         try {
 
-            $title = $project->title;
+            $title      = $project->title;
             $programmes = Programme::all();
-            $officers = Role::where('name', 'officer')->first()->users()->get();
+            $officers   = Role::where('name', 'officer')->first()->users()->get();
+            $roles      = Role::all();
+            $managers   = Role::where('name', 'manager')->first()->users()->get();
 
 
             return view('pages.project.edit')
                 ->with('data', $project)
                 ->with('page', $this->page)
                 ->with('title', $title)
+                ->with('roles', $roles)
+                ->with('managers', $managers)
                 ->with('programmes', $programmes)
                 ->with('officers',$officers);
 

@@ -93,7 +93,7 @@ class ProgrammeController extends Controller
             $programme->save();
 
             return \redirect()
-                ->route('programmes.index')->withStatus('The  ('. strtoupper($programme->title).') Programme was successfully created..');
+                ->back()->withStatus('The  ('. strtoupper($programme->title).') Programme was successfully created..');
         } catch (Exception $exception) {
             return \redirect()
                 ->back()
@@ -177,7 +177,7 @@ class ProgrammeController extends Controller
             $programme->save();
 
             return \redirect()
-                ->route('programmes.index')->withStatus('The  (' . strtoupper($programme->title) . ') Programme was successfully updated..');
+                ->back()->withStatus('The  (' . strtoupper($programme->title) . ') Programme was successfully updated..');
         } catch (Exception $exception) {
             return \redirect()
                 ->back()

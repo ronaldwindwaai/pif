@@ -18,4 +18,5 @@ return [
     'added_resources'   => 'Added Resources',
     'added_by'          => 'Added By',
     'created_at'        => 'Created At',
+    'confirm_delete'    => 'Are you sure, you want to delete this, :name',
 ];
