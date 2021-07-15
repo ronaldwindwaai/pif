@@ -37,7 +37,7 @@
                                 class="feather icon-home"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.dashboard') }}</span></a>
 
                 </li>
-
+                @hasrole('super-admin|manager')
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-align-justify"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.programmes.title') }}</span></a>
@@ -46,7 +46,8 @@
                         <li><a href="{{ route('programmes.index') }}">{{ __('admin/menu.navigation.programmes.list') }}</a></li>
                     </ul>
                 </li>
-                @hasrole('super-admin|admin')
+                @endhasrole
+                @hasrole('super-admin|manager|officer')
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-layout"></i></span><span class="pcoded-mtext">{{ __('admin/menu.navigation.projects.title') }}</span></a>
