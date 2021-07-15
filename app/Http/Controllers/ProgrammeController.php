@@ -145,14 +145,16 @@ class ProgrammeController extends Controller
             $title = $programme->title;
             $managers = Role::where('name', 'manager')->first()->users()->get();
 
+            $roles = Role::all();
+
             return view('pages.programme.edit')
             ->with('data', $programme)
                 ->with('page', $this->page)
                 ->with('title', $title)
+                ->with('roles', $roles)
                 ->with('managers',$managers);
 
         } catch (Exception $exception) {
-            dd($exception);
             return \redirect()
                 ->back()
                 ->withErrors($exception->getMessage());
