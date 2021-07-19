@@ -52,7 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function programme()
     {
-        return $this->hasMany(Programme::class);
+        return $this->hasMany(Programme::class,'programme_officer_id');
     }
 
     public function projects()

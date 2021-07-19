@@ -11,11 +11,9 @@ use App\Models\Project;
 use App\Models\Resource;
 use App\Models\User;
 use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Notifications\Notification as NotificationsNotification;
+use General;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Notification;
 
 class MeetingController extends Controller
 {
@@ -75,6 +73,7 @@ class MeetingController extends Controller
             $projects = Project::all();
             $partners = Partner::all();
             $users = User::all();
+            $type_of_meetings = General::getEnumValues('meetings','type_of_meeting');
 
             return view('pages.meeting.form-wizard')
                 ->with('page', $this->page)
@@ -82,6 +81,7 @@ class MeetingController extends Controller
                 ->with('programmes', $programmes)
                 ->with('projects', $projects)
                 ->with('partners', $partners)
+                ->with('type_of_meetings', $type_of_meetings)
                 ->with('users',$users)
                 ->with('title', $title);
 

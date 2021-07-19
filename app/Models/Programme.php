@@ -11,14 +11,14 @@ class Programme extends Model
 
     protected $fillable = [
         'title',
-        'manager_id',
+        'programme_officer_id',
         'description',
     ];
 
     private $columns = [
         'id',
         'title',
-        'manager',
+        'programme_officer',
         'created_at',
     ];
 
@@ -33,9 +33,9 @@ class Programme extends Model
         return $this->hasMany(Meeting::class);
     }
 
-    public function user()
+    public function programme_officer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'programme_officer_id','id');
     }
 
     public function files()

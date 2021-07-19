@@ -63,7 +63,7 @@ class StoreMeetingRequest extends FormRequest
         $participant_dates = $this->get_dates_array($this->participant_dates);
         $secretariat_dates = $this->get_dates_array($this->secretariat_dates);
 
-        if(\is_array($dates)){
+        /**if(\is_array($dates)){
             $this->merge([
                 'start_date' => $dates[0],
                 'end_date'  => $dates[4],
@@ -74,11 +74,11 @@ class StoreMeetingRequest extends FormRequest
                 'participants_departure_date'  => optional($participant_dates)[0],
                 'secretariat_departure_date'  => optional($secretariat_dates)[2],
             ]);
-        }
+        } */
     }
 
-    private function get_dates_array($dates)
+   /** private function get_dates_array($dates)
     {
-        return \explode(' ', $dates);
-    }
+        return explode(' ', $dates);
+    } */
 }

@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Http\Resources\CalendarResource;
 use Illuminate\Support\ServiceProvider;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider

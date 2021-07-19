@@ -24,10 +24,9 @@ class ProgrammeFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->title,
-            'description'   => $this->faker->realText(),
-            'manager_id'    =>  Role::where('name', 'manager')->first()->users()->get()->random()->id,
-            'user_id'       =>  User::all()->random()->id,
+            'title'                 => $this->faker->title,
+            'description'           => $this->faker->realText(),
+            'programme_officer_id'  =>  Role::where('name', 'manager')->first()->users()->get()->random()->id,
         ];
     }
 }

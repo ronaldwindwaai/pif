@@ -17,11 +17,7 @@ class CreateProgrammesTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->foreignId('manager_id')
-                ->constrained('users')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreignId('user_id')
+            $table->foreignId('programme_officer_id')
                 ->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
