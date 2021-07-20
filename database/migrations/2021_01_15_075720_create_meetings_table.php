@@ -22,15 +22,16 @@ class CreateMeetingsTable extends Migration
                 'Weekly',
                 'Monthly',
             ]);
+            $table->string('host');
             $table->date('start_date');
             $table->date('end_date');
             $table->time('start_time');
             $table->time('end_time');
+            $table->text('participant_type');
             $table->date('participants_arrival_date')->nullable();
             $table->date('secretariat_arrival_date')->nullable();
             $table->date('participants_departure_date')->nullable();
             $table->date('secretariat_departure_date')->nullable();
-            $table->text('description')->nullable();
             $table->boolean('is_breakout_room_required')->default(false);
             $table->boolean('is_recording_required')->default(false);
             $table->boolean('is_attendance_report_required')->default(false);
@@ -38,16 +39,19 @@ class CreateMeetingsTable extends Migration
             $table->boolean('is_secretariat_airfare_required')->default(false);
             $table->string('proposed_funding')->nullable();
             $table->string('venue')->nullable();
-            $table->string('perdiem_rate')->nullable();
+            $table->string('dsa_rate')->nullable();
+            $table->string('original_budget_rate')->nullable();
+            $table->text('reasons_for_variance_budget')->nullable();
             $table->string('num_of_participants')->nullable();
+            $table->string('num_of_participants_per_original_budget')->nullable();
+            $table->text('reason_for_variance_num_participants')->nullable();
             $table->enum('status',[
                 'pending',
                 'completed',
                 'postponed',
                 'cancelled',
-            ]
-            )->default('pending');
-            $table->foreignId('user_id')
+            ])->default('pending');
+            $table->foreignId('programme_officer_id')
                     ->constrained('users')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');

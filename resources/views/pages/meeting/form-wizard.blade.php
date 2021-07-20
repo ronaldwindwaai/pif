@@ -149,7 +149,8 @@
                                         <label for="type-of-meeting" class="col-sm-3 col-form-label">Type of Meeting</label>
                                         <div class="col-sm-9">
                                             <select class="js-example-basic-multiple col-md-6" id="type-of-meeting"
-                                                name="type_of_meeting">
+                                                name="type_of_meeting" required @error('type_of_meeting') is-invalid @enderror"
+                                                @error('type_of_meeting') aria-invalid="true" @enderror>
                                                 @foreach ($type_of_meetings as $type_meeting)
                                                     <option value="{{ $type_meeting }}">{{ $type_meeting }}</option>
                                                 @endforeach
@@ -165,59 +166,144 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="programme-officer" class="col-sm-3 col-form-label">Programme Officer</label>
+                                        <label for="programme" class="col-sm-3 col-form-label">Programme</label>
                                         <div class="col-sm-9">
-                                            <select class="js-example-basic-multiple col-md-6" id="type-of-meeting"
-                                                name="type_of_meeting">
-                                                @foreach ($type_of_meetings as $type_meeting)
-                                                    <option value="{{ $type_meeting }}">{{ $type_meeting }}</option>
+                                            <select class="js-example-basic-multiple col-md-6" id="programme-officer"
+                                                name="programme_id" required @error('programme_id') is-invalid @enderror"
+                                                @error('programme_id') aria-invalid="true" @enderror>
+                                                @foreach ($programmes as $programme)
+                                                    <option value="{{ $programme->id }}">{{ $programme->title }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="progress-t-name" class="col-sm-3 col-form-label">Name</label>
+                                        <label for="programme-officer" class="col-sm-3 col-form-label">Programme Officer</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="progress-t-name"
-                                                placeholder="Password" />
+                                            <select class="js-example-basic-multiple col-md-6" id="programme-officer"
+                                                name="programme_officer_id" required @error('prgramme_officer_id') is-invalid @enderror"
+                                                @error('programme_officer_id') aria-invalid="true" @enderror>
+                                                @foreach ($programmes as $programme)
+                                                    <option value="{{ $programme->programme_officer->id }}">{{ $programme->programme_officer->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="progress-t-email" class="col-sm-3 col-form-label">Email</label>
+                                        <label for="project" class="col-sm-3 col-form-label">Project</label>
                                         <div class="col-sm-9">
-                                            <input type="email" class="form-control" id="progress-t-email"
-                                                placeholder="Email">
+                                            <select class="js-example-basic-multiple col-md-6" id="project"
+                                                name="project_id" required @error('project_id') is-invalid @enderror"
+                                                @error('prject_id') aria-invalid="true" @enderror>
+                                                @foreach ($projects as $project)
+                                                    <option value="{{ $project->id }}">{{ $project->title }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
+
                                     <div class="form-group row">
-                                        <label for="progress-t-pwd" class="col-sm-3 col-form-label">Password</label>
+                                        <label for="host" class="col-sm-3 col-form-label">Host</label>
                                         <div class="col-sm-9">
-                                            <input type="password" class="form-control" id="progress-t-pwd"
-                                                placeholder="Password">
+                                            <input type="text" name="host" class="form-control" id="host"
+                                                placeholder="Host" required @error('host') is-invalid @enderror"
+                                                @error('host') aria-invalid="true" @enderror>
                                         </div>
                                     </div>
+
+                                    <div class="form-group row">
+                                        <label for="participant-type" class="col-sm-3 col-form-label">Proposed Participants / Delegates</label>
+                                        <div class="col-sm-9">
+                                            <textarea name="participant_type" class="form-control"
+                                            id="participant-type"
+                                            placeholder="Proposed Particiapnts or Delegates for the meeting" required @error('participant_type') is-invalid @enderror"
+                                            @error('participant_type') aria-invalid="true" @enderror></textarea>
+                                        </div>
+                                    </div>
+
                                 </form>
                             </div>
                             <div class="tab-pane" id="progress-t-tab2">
                                 <form>
                                     <div class="form-group row">
-                                        <label for="progress-t-sate" class="col-sm-3 col-form-label">State</label>
+                                        <label for="proposed-funder" class="col-sm-3 col-form-label">Proposed Funder</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" id="progress-t-sate">
-                                                <option>Select State</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
+                                            <input type="text" name="proposed_funder" class="form-control" id="proposed-funder"
+                                                placeholder="Proposed Funding" required @error('proposed_funder') is-invalid @enderror"
+                                                @error('proposed_funder') aria-invalid="true" @enderror>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="progress-t-address" class="col-sm-3 col-form-label">Address</label>
+                                        <label for="budget-line" class="col-sm-3 col-form-label">Budget Line</label>
                                         <div class="col-sm-9">
-                                            <textarea class="form-control" id="progress-t-address" rows="3"
-                                                spellcheck="false"></textarea>
+                                            <textarea name="budget_line" class="form-control"
+                                            id="budget-line"
+                                            placeholder="Budget Line" required @error('budget_line') is-invalid @enderror"
+                                            @error('budget_line') aria-invalid="true" @enderror></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="dsa-rate" class="col-sm-3 col-form-label">Proposed DSA Rate</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="dsa_rate" class="form-control"
+                                            id="dsa-rate"
+                                            placeholder="Proposed DSA rate"  @error('dsa_rate') is-invalid @enderror"
+                                            @error('dsa_rate') aria-invalid="true" @enderror />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="original-budget-rate" class="col-sm-3 col-form-label">Original Budget Rate</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="original_budget_rate" class="form-control"
+                                            id="original-budget-rate"
+                                            placeholder="Original Budget Rate"  @error('original_budget_rate') is-invalid @enderror"
+                                            @error('original_budget_rate') aria-invalid="true" @enderror />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="reason-for-variance-budget" class="col-sm-3 col-form-label">Reasons for Variance of Budget</label>
+                                        <div class="col-sm-9">
+                                            <textarea name="reasons_for_variance_budget" row="3" class="form-control"
+                                            id="reason-for-variance-budget"
+                                            placeholder="Reasons for Variance of Budget" required @error('reasons_for_variance_budget') is-invalid @enderror"
+                                            @error('reasons_for_variance_budget') aria-invalid="true" @enderror></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="proposed-number-of-participants" class="col-sm-3 col-form-label">Proposed Number of Participants</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="num_of_participants" class="form-control"
+                                            id="proposed-number-of-participants"
+                                            placeholder="Proposed Number of Participants" required @error('num_of_participants') is-invalid @enderror"
+                                            @error('num_of_participants') aria-invalid=" true" @enderror />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="number-of-participants-per-original-budget" class="col-sm-3 col-form-label">Number of Participants Per Original Budget</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="num_of_participants_per_original_budget" class="form-control"
+                                            id="proposed-number-of-participants"
+                                            placeholder="Number of Participants Per Original Budget" required @error('num_of_participants_per_original_budget') is-invalid @enderror"
+                                            @error('num_of_participants_per_original_budget') aria-invalid=" true" @enderror />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="reason-for-variance-participants" class="col-sm-3 col-form-label">Reasons for Variance for Number of Participants</label>
+                                        <div class="col-sm-9">
+                                            <textarea name="reason_for_variance_num_participants" row="3" class="form-control"
+                                            id="reason-for-variance-participants"
+                                            placeholder="Reasons for Variance for Number of Participants" required @error('reason_for_variance_num_participants') is-invalid @enderror"
+                                            @error('reason_for_variance_num_participants') aria-invalid="true" @enderror></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="proposed-funding-for-the-difference" class="col-sm-3 col-form-label">Proposed Funding for the Difference</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="proposed_funding_for_difference" class="form-control"
+                                            id="proposed-funding-for-the-difference"
+                                            placeholder="Proposed Funding for the Difference"  @error('proposed_funding_for_difference') is-invalid @enderror"
+                                            @error('proposed_funding_for_difference') aria-invalid="true" @enderror />
                                         </div>
                                     </div>
                                 </form>

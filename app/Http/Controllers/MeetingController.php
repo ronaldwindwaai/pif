@@ -68,12 +68,13 @@ class MeetingController extends Controller
         try {
             $title = 'Add a Meeting';
 
-            $resources = Resource::all();
-            $programmes = Programme::all();
+            $resources  = Resource::all();
+            $programmes = Programme::with('programme_officer')->get();
             $projects = Project::all();
             $partners = Partner::all();
             $users = User::all();
             $type_of_meetings = General::getEnumValues('meetings','type_of_meeting');
+
 
             return view('pages.meeting.form-wizard')
                 ->with('page', $this->page)

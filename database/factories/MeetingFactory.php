@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
 use App\Models\Project;
 use App\Models\Programme;
+use Spatie\Permission\Models\Role;
 
 class MeetingFactory extends Factory
 {
@@ -40,11 +41,11 @@ class MeetingFactory extends Factory
                 'Weekly',
                 'Monthly',
             ]),
+            'host' => $this->faker->country,
             'start_date' => $starting_time,
             'end_date' => $ending_time,
             'start_time' => $starting_time->format('H:m:s'),
             'end_time' => $ending_time->format('H:m:s'),
-            'description' =>  $this->faker->realText(),
             'venue' => $this->faker->city . ',' . $this->faker->country,
             'status'    => $this->faker->randomElement([
                 'pending',
@@ -56,7 +57,7 @@ class MeetingFactory extends Factory
             'is_recording_required' => $this->faker->boolean(),
             'is_attendance_report_required' => $this->faker->boolean(),
             'file_id'   =>  File::all()->random()->id,
-            'user_id'   =>  User::all()->random()->id,
+            'programme_officer_id'   => Role::where('name', 'manager')->first()->users()->get()->random()->id,
             'partner_id'   =>  Partner::all()->random()->id,
             'project_id'   =>  Project::all()->random()->id,
             'programme_id'   =>  Programme::all()->random()->id,
