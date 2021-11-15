@@ -36,11 +36,11 @@ Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controller
 Route::get('/login', function () {
     return view('auth.login');
 });
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('programmes', ProgrammeController::class);
-    Route::delete('peogrammes/delete_select/', [ProgrammeController::class, 'delete_select'])->name('delete_selected');
+    Route::delete('programmes/delete_select/', [ProgrammeController::class, 'delete_select'])->name('delete_selected');
     Route::resource('projects', ProjectController::class);
     Route::resource('resources', ResourceController::class);
     Route::resource('supports', SupportController::class);

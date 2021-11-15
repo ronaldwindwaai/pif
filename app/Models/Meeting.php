@@ -74,7 +74,7 @@ class Meeting extends Model
     }
     public function resources()
     {
-        return $this->belongsToMany(Resource::class);
+        return $this->belongsToMany(Resource::class, 'meetings_resources', 'meeting_id', 'resource_id');
     }
 
     public function files()
@@ -89,13 +89,11 @@ class Meeting extends Model
 
     public function getStartDateAttribute($value)
     {
-        return Carbon::createFromFormat('Y-m-d',$value)->format('Y-m-d');
+        return Carbon::createFromFormat('Y-m-d', $value)->format('Y-m-d');
     }
 
     public function getEndDateAttribute($value)
     {
         return Carbon::createFromFormat('Y-m-d', $value)->format('Y-m-d');
     }
-
-
 }

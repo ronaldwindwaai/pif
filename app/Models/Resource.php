@@ -35,7 +35,7 @@ class Resource extends Model
 
     public function meetings()
     {
-        return $this->belongsToMany(Meeting::class);
+        return $this->belongsToMany(Meeting::class, 'resources_meetings', 'resource_id', 'meeting_id');
     }
     public function files()
     {

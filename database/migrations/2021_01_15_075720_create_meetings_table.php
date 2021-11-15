@@ -16,7 +16,7 @@ class CreateMeetingsTable extends Migration
         Schema::create('meetings', function (Blueprint $table) {
             $table->id();
             $table->string('name_of_the_meeting');
-            $table->enum('type_of_meeting',[
+            $table->enum('type_of_meeting', [
                 'Single Day',
                 'Specific Days',
                 'Weekly',
@@ -27,7 +27,7 @@ class CreateMeetingsTable extends Migration
             $table->date('end_date');
             $table->time('start_time');
             $table->time('end_time');
-            $table->text('participant_type');
+            $table->text('participant_type')->nullable()->comment('Proposed Participants or delegates.');
             $table->date('participants_arrival_date')->nullable();
             $table->date('secretariat_arrival_date')->nullable();
             $table->date('participants_departure_date')->nullable();
@@ -45,35 +45,35 @@ class CreateMeetingsTable extends Migration
             $table->string('num_of_participants')->nullable();
             $table->string('num_of_participants_per_original_budget')->nullable();
             $table->text('reason_for_variance_num_participants')->nullable();
-            $table->enum('status',[
+            $table->enum('status', [
                 'pending',
                 'completed',
                 'postponed',
                 'cancelled',
             ])->default('pending');
             $table->foreignId('programme_officer_id')
-                    ->constrained('users')
-                    ->onUpdate('cascade')
-                    ->onDelete('cascade');
+                ->constrained('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreignId('project_id')
-                    ->constrained('projects')
-                    ->onUpdate('cascade')
-                    ->onDelete('cascade');
+                ->constrained('projects')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreignId('programme_id')
-                    ->nullable()
-                    ->constrained('programmes')
-                    ->onUpdate('cascade')
-                    ->onDelete('cascade');
+                ->nullable()
+                ->constrained('programmes')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreignId('partner_id')
-                    ->nullable()
-                    ->constrained('partners')
-                    ->onUpdate('cascade')
-                    ->onDelete('cascade');
+                ->nullable()
+                ->constrained('partners')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreignId('file_id')
-                    ->nullable()
-                    ->constrained('files')
-                    ->onUpdate('cascade')
-                    ->onDelete('cascade');
+                ->nullable()
+                ->constrained('files')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
